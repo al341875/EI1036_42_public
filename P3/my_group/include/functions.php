@@ -11,7 +11,7 @@
  * */
 include_once(plugin_dir_path( __FILE__ ).'gestionBD.php');
 
-$table = "A_cliente";
+$table = "A_Grupo";
 //seguridad wp
 if ( ! defined( 'WPINC' ) ) exit;
 if ( ! defined( 'ABSPATH' ) ) exit;
