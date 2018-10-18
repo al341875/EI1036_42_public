@@ -9,10 +9,6 @@ License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
 
-//Estas 2 instrucciones me aseguran que el usuario accede a través del WP. Y no directamente
-if ( ! defined( 'WPINC' ) ) exit;
-
-if ( ! defined( 'ABSPATH' ) ) exit;
 
 //Al activar el plugin quiero que se cree una tabla en la BD, que creará la función my_group_install.
 
@@ -28,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 //La siguiente sentencia activaria la acción para todos los usuarios.
 //add_action('admin_post_nopriv_my_datos', 'my_datos');
 
-include_once(plugin_dir_path( __FILE__ ).'include/functions.php');
+include(plugin_dir_path( __FILE__ ).'include/functions.php');
 
 
 ?>
