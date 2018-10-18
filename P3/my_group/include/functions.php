@@ -103,6 +103,7 @@ function my_datos()
             break;
         case "listar":
             //Listado amigos o de todos si se es administrador.
+            print "VA?";}
             if (is_admin()) {$rows=consultar(); print "VA2?";}
             else {$rows=consultarFiltro("clienteMail", $user_email);print "VA3?";}
             print "VA?";
