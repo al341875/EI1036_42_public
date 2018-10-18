@@ -22,6 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 function my_group_install(){
     global $pdo;
     global $table;
+    $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
     $query="CREATE TABLE IF NOT EXISTS $table (person_id INT(11) NOT NULL AUTO_INCREMENT, nombre VARCHAR(100), apellidos VARCHAR(100), email VARCHAR(100),  foto_file VARCHAR(25), clienteMail VARCHAR(100)  PRIMARY KEY(client_id))";
     //echo $query;
     $pdo->exec($query);
