@@ -100,10 +100,11 @@ function my_datos()
             catch (PDOExeption $e) {
                     echo ($e->getMessage());
                 }
-        listar:
+        case "listar":
             //Listado amigos o de todos si se es administrador.
+            echo is_admin();
             if (is_admin()) {$rows=consultar();}
-            else {$rows=consultarFiltro("email", $user_email);}
+            else {$rows=consultarFiltro("clienteMail", $user_email);}
             
             if (is_array($rows)) {/* Creamos un listado como una tabla HTML*/
                 print '<div><table><th>';
