@@ -100,7 +100,7 @@ function my_datos()
                     echo ($e->getMessage());
                 }
             print "Operación  correcta";
-        case listar:
+        case "listar":
             //Listado amigos o de todos si se es administrador.
             if (is_admin()) {$rows=consultar(); }
             else {$rows=consultarFiltro("clienteMail", $user_email);}
