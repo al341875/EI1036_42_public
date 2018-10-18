@@ -89,7 +89,7 @@ function my_datos()
             print $query;            
             try { 
                 $a=array ($_REQUEST['userName'], $_REQUEST['email'],$_REQUEST['clienteMail'] );
-                print $a;
+                print_r ($a);
                 $consult = $pdo->prepare($query);
                 $a= $consult->execute ($a);
                 if (1>$a)echo "InCorrecto";
