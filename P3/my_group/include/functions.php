@@ -27,7 +27,7 @@ function my_group_install(){
 }
 
 
-echo "hola";
+
 add_action('admin_post_nopriv_my_datos', 'my_datos');
 add_action('admin_post_my_datos', 'my_datos'); //no autentificados
 
@@ -41,17 +41,13 @@ function my_datos()
 
     global $table;
     global $user_ID , $user_email;
-    echo "hola";
 
     $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
-    echo "aqui1";
     get_currentuserinfo();
     if ('' == $user_ID) {
                 //no user logged in
-                echo "aqui2";
                 exit;
     }
-    echo "aqui3";
     //if (!(isset($_REQUEST['action'])) or !(isset($_REQUEST['proceso'])))  exit;
 
     get_header();
@@ -64,7 +60,7 @@ function my_datos()
             <form class="fom_usuario" action="?action=my_datos&proceso=registrar" method="POST">
                 <label for="clienteMail">Tu correo</label>
                 <br/>
-                <input type="text" name="clienteMail"  size="20" maxlength="25" value="<?php print $userID?> "
+                <input type="text" name="clienteMail"  size="20" maxlength="25" value="<?php print $user_email?>"
                 readonly />
                 <br/>
                 <legend>Datos básicos</legend>
