@@ -100,6 +100,7 @@ function my_datos()
             catch (PDOExeption $e) {
                     echo ($e->getMessage());
                 }
+            
         case "listar":
             //Listado amigos o de todos si se es administrador.
             echo is_admin();
@@ -122,6 +123,8 @@ function my_datos()
                 print "</table></div>";
             }
             break;
+        default:
+            print "opcioón no correcta";
         
     }
 
