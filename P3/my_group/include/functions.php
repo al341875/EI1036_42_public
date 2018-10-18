@@ -9,7 +9,7 @@
  * * @license http://www.fsf.org/licensing/licenses/gpl.txt GPL 2 or later
  * * @version 2
  * */
-include_once(plugin_dir_path( __FILE__ ).'./include/gestionBD');
+include_once(plugin_dir_path( __FILE__ ).'.gestionBD');
 $table = "A_clientGroup";
 
 //seguridad wp
