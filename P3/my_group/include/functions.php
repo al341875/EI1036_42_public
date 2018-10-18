@@ -35,12 +35,12 @@ echo "hola";
 //Esta función realizará distintas acciones en función del valor del parámetro
 //$_REQUEST['proceso'], o sea se activara al llamar a url semejantes a 
 //https://host/wp-admin/admin-post.php?action=my_datos&proceso=r 
-//if ( ! function_exists( 'my_datos' ) ) {
+if ( ! function_exists( 'my_datos' ) ) {
 function my_datos()
 { 
 
     global $table;
-    global $$user_ID , $user_email;
+    global $user_ID , $user_email;
     echo "hola";
 
     $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
@@ -132,6 +132,9 @@ function my_datos()
 
     get_footer();
     }
-//}
-add_action('admin_post_my_datos', 'my_datos');
+}
+
+
+add_action('admin_post_nopriv_my_datos', 'my_datos');
+//add_action('admin_post_my_datos', 'my_datos'); //no autentificados
 ?>
