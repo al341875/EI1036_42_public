@@ -133,5 +133,5 @@ function my_datos()
     get_footer();
     }
 //}
-
+add_action('admin_post_my_datos', 'my_datos');
 ?>
