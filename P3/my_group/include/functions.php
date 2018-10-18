@@ -39,13 +39,15 @@ function my_datos()
     global $pdo;
     global $table;
     global $$user_ID , $user_email;
-
+echo "aqui1";
     get_currentuserinfo();
     if ('' == $user_ID) {
                 //no user logged in
+                echo "aqui2";
                 exit;
     }
-    if (!(isset($_REQUEST['action']) and isset($_REQUEST['proceso'])))  exit;
+    echo "aqui3";
+    if (!(isset($_REQUEST['action'])) or !(isset($_REQUEST['proceso'])))  exit;
 
     get_header();
     switch ($_REQUEST['proceso']) {
