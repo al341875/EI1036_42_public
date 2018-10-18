@@ -15,7 +15,7 @@ if ( ! defined( 'WPINC' ) ) exit;
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 //Al activar el plugin quiero que se cree una tabla en la BD, que creará la función my_group_install.
-register_activation_hook( __FILE__, 'my_group_install' );
+
 
 
 //Añado action hook, de forma que cuando se realice la acción de una petición a la URL: wp-admin/admin-post.php?action=my_datos 

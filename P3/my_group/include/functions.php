@@ -21,8 +21,8 @@ function my_group_install(){
    
     global $table;
     $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
-    $query="CREATE TABLE IF NOT EXISTS $table (person_id INT(11) NOT NULL AUTO_INCREMENT, nombre VARCHAR(100), apellidos VARCHAR(100), email VARCHAR(100),  foto_file VARCHAR(25), clienteMail VARCHAR(100)  PRIMARY KEY(client_id))";
-    //echo $query;
+    $query="CREATE TABLE IF NOT EXISTS $table (person_id INT(11) NOT NULL AUTO_INCREMENT, nombre VARCHAR(100),  email VARCHAR(100),  foto_file VARCHAR(25), clienteMail VARCHAR(100),  PRIMARY KEY(client_id))";
+    echo $query;
     $pdo->exec($query);
 }
 
@@ -30,6 +30,7 @@ function my_group_install(){
 
 //add_action('admin_post_nopriv_my_datos', 'my_datos');//no autentificados
 add_action('admin_post_my_datos', 'my_datos'); 
+register_activation_hook( __FILE__, 'my_group_install' );
 
 //CONTROLADOR
 //Esta función realizará distintas acciones en función del valor del parámetro
@@ -41,8 +42,11 @@ function my_datos()
 
     global $table;
     global $user_ID , $user_email;
-
+    my_group_install();
     $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
+    //$query="CREATE TABLE IF NOT EXISTS $table (person_id INT(11) NOT NULL AUTO_INCREMENT, nombre VARCHAR(100),  email VARCHAR(100),  foto_file VARCHAR(25), clienteMail VARCHAR(100),  PRIMARY KEY(client_id))";
+    //echo $query;
+    //$pdo->exec($query);
     get_currentuserinfo();
     if ('' == $user_ID) {
                 //no user logged in
