@@ -85,14 +85,11 @@ function my_datos()
                 return;
             }
             $query = "INSERT INTO     $table (nombre, email,clienteMail)
-                                VALUES (?,?,?)";
-                            
+                                VALUES (?,?,?)";              
             try { 
-                $a=array($_REQUEST['userName'], $_REQUEST['email'],$_REQUEST['clienteMail'] );
                 $consult = $pdo->prepare($query);
-                $a=$consult->execute(array($_REQUEST['userName'], $_REQUEST['email'],$_REQUEST['passwd']  ));
+                $a= $consult->execute (array ($_REQUEST['userName'], $_REQUEST['email'],$_REQUEST['clienteMail'] ));
                 if (1>$a)echo "InCorrecto";
-        
                 } 
             catch (PDOExeption $e) {
                     echo ($e->getMessage());
