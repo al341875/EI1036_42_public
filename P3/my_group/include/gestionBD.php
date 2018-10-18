@@ -23,7 +23,8 @@ function borrar($valor) {
 }
 
 function consultar() {
-    global $pdo,$table;
+    global $pdo;
+    global $table;
     $query = "SELECT     * FROM       $table "; 
     $consult = $pdo->prepare($query);
     $a=$consult->execute(array());
@@ -32,7 +33,8 @@ function consultar() {
   
 }
 function consultarFiltro($campo,$valor) {
-    global $pdo,$table;
+    global $pdo;
+    global $table;
     $query = "SELECT     * FROM       $table  WHERE ? =(?)"; 
     $consult = $pdo->prepare($query);
     $a=$consult->execute(array($campo,$valor));
@@ -42,7 +44,9 @@ function consultarFiltro($campo,$valor) {
 }
 
 function creatablaUsuarios(){
-    global $pdo,$table;
+    global $pdo;
+    
+    global $table;
     /*CREATE TABLE cliente(
         client_id INT NOT NULL,
         name CHAR(50) NOT NULL,

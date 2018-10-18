@@ -104,8 +104,9 @@ function my_datos()
             //Listado amigos o de todos si se es administrador.
             if (is_admin()) {$rows=consultar(); }
             else {$rows=consultarFiltro("clienteMail", $user_email);}
-            
+            print 0;
             if (is_array($rows)) {/* Creamos un listado como una tabla HTML*/
+                
                 print '<div><table><th>';
                 foreach ( array_keys($rows[0])as $key) {
                     echo "<td>", $key,"</td>";
