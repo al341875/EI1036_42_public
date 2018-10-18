@@ -43,9 +43,6 @@ function my_datos()
     global $table;
     global $user_ID , $user_email;
     $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
-    //$query="CREATE TABLE IF NOT EXISTS $table (person_id INT(11) NOT NULL AUTO_INCREMENT, nombre VARCHAR(100),  email VARCHAR(100),  foto_file VARCHAR(25), clienteMail VARCHAR(100),  PRIMARY KEY(client_id))";
-    //echo $query;
-    //$pdo->exec($query);
     get_currentuserinfo();
     if ('' == $user_ID) {
                 //no user logged in
