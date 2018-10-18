@@ -35,7 +35,8 @@ function consultar() {
 function consultarFiltro($campo,$valor) {
     global $pdo;
     global $table;
-    $query = "SELECT     * FROM       $table  WHERE ? =(?)"; 
+    $query = "SELECT     * FROM       (?)  WHERE ? =(?)"; 
+    print $query;
     $consult = $pdo->prepare($query);
     $a=$consult->execute(array($campo,$valor));
     if (1>$a) echo "No hay valores que cumplan la consulta";
