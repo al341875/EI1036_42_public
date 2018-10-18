@@ -29,7 +29,7 @@ function my_group_install(){
 
 add_action('admin_post_nopriv_my_datos', 'my_datos');
 add_action('admin_post_my_datos', 'my_datos');
-
+echo "hola";
 
 //CONTROLADOR
 //Esta función realizará distintas acciones en función del valor del parámetro
@@ -41,6 +41,7 @@ function my_datos()
 
     global $table;
     global $$user_ID , $user_email;
+    echo "hola";
 
     $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
     echo "aqui1";
