@@ -88,8 +88,7 @@ function my_datos()
                 return;
             }
             $query = "INSERT INTO     $table (nombre, email,clienteMail)
-                                VALUES (?,?,?)";  
-            print $query;            
+                                VALUES (?,?,?)";            
             try { 
                 $a=array ($_REQUEST['userName'], $_REQUEST['email'],$_REQUEST['clienteMail'] );
                 print_r ($a);
@@ -100,13 +99,13 @@ function my_datos()
             catch (PDOExeption $e) {
                     echo ($e->getMessage());
                 }
-            
-        case "listar":
+            print "Operación  correcta";
+        case listar:
             //Listado amigos o de todos si se es administrador.
-            if (is_admin()) {$rows=consultar(); echo "222";}
+            if (is_admin()) {$rows=consultar(); }
             else {$rows=consultarFiltro("clienteMail", $user_email);}
             
-            //if (is_array($rows)) {/* Creamos un listado como una tabla HTML*/
+            if (is_array($rows)) {/* Creamos un listado como una tabla HTML*/
                 print '<div><table><th>';
                 foreach ( array_keys($rows[0])as $key) {
                     echo "<td>", $key,"</td>";
@@ -118,7 +117,7 @@ function my_datos()
                         echo "<td>", $val, "</td>";
                     }
                     print "</tr>";
-                //}
+                }
                 print "</table></div>";
             }
             break;

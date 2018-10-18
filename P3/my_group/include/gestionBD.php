@@ -5,14 +5,16 @@ if ( ! defined( 'WPINC' ) ) exit;
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 
-function insertar($pdo,$table,$valor) {
+function insertar() {
+    global $pdo,$table;
     $query = "INSERT INTO    $table (nombre) VALUES (?)";
     $consult = $pdo->prepare($query);
     $a=$consult->execute(array($valor)); 
     if (1>$a)echo "InCorrecto";
                      
 }
-function borrar($pdo,$table,$valor) {
+function borrar($valor) {
+    global $pdo,$table;
     $query = "DELETE   FROM   $table WHERE client_id =(?)";
     $consult = $pdo->prepare($query);
     $a=$consult->execute(array($valor)); 
@@ -20,7 +22,8 @@ function borrar($pdo,$table,$valor) {
                      
 }
 
-function consultar($pdo,$table) {
+function consultar() {
+    global $pdo,$table;
     $query = "SELECT     * FROM       $table "; 
     $consult = $pdo->prepare($query);
     $a=$consult->execute(array());
@@ -28,7 +31,8 @@ function consultar($pdo,$table) {
     return ($consult->fetchAll(PDO::FETCH_ASSOC)); 
   
 }
-function consultarFiltro($pdo,$table,$campo,$valor) {
+function consultarFiltro($campo,$valor) {
+    global $pdo,$table;
     $query = "SELECT     * FROM       $table  WHERE ? =(?)"; 
     $consult = $pdo->prepare($query);
     $a=$consult->execute(array($campo,$valor));
@@ -37,8 +41,9 @@ function consultarFiltro($pdo,$table,$campo,$valor) {
   
 }
 
-function creatablaUsuarios($pdo,$table){
-/*CREATE TABLE cliente(
+function creatablaUsuarios(){
+    global $pdo,$table;
+    /*CREATE TABLE cliente(
         client_id INT NOT NULL,
         name CHAR(50) NOT NULL,
         surname CHAR(50) NOT NULL,
@@ -54,7 +59,4 @@ function creatablaUsuarios($pdo,$table){
     //echo $query;
     $pdo->exec($query);
 }
-
-
-
  ?>
