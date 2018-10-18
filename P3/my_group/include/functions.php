@@ -29,7 +29,7 @@ function my_group_install(){
 
 
 add_action('admin_post_nopriv_my_datos', 'my_datos');
-add_action('admin_post_my_datos', 'my_datos'); //no autentificados
+//add_action('admin_post_my_datos', 'my_datos'); //no autentificados
 
 //CONTROLADOR
 //Esta función realizará distintas acciones en función del valor del parámetro
@@ -73,11 +73,6 @@ function my_datos()
                 <br/>
                 <input type="text" name="email" class="item_requerid" size="20" maxlength="25" value="<?php print $email ?>"
                 placeholder="kiko@ic.es" />
-                <br/>
-                <label for="passwd">Clave</label>
-                <br/>
-                <input type="password" name="passwd" class="item_requerid" size="8" maxlength="25" value="<?php print $passwd ?>"
-                />
                 <br/>
                 <input type="submit" value="Enviar">
                 <input type="reset" value="Deshacer">
