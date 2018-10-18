@@ -25,6 +25,6 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 //add_action('admin_post_nopriv_my_datos', 'my_datos');
 
 include(plugin_dir_path( __FILE__ ).'include/functions.php');
-register_activation_hook( __FILE__, 'my_group_install' );
+
 
 ?>

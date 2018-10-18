@@ -18,19 +18,19 @@ if ( ! defined( 'WPINC' ) ) exit;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+//add_action('admin_post_nopriv_my_datos', 'my_datos');//no autentificados
+add_action('admin_post_my_datos', 'my_datos'); 
 
 //Funcion instalación plugin. Crea tabla
 function my_group_install(){
     global $table;
     $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
     $query="CREATE TABLE IF NOT EXISTS $table (person_id INT(11) NOT NULL AUTO_INCREMENT, nombre VARCHAR(100),  email VARCHAR(100),  foto_file VARCHAR(25), clienteMail VARCHAR(100),  PRIMARY KEY(person_id))";
-    echo $query;
     $pdo->exec($query);
 }
 
 
-//add_action('admin_post_nopriv_my_datos', 'my_datos');//no autentificados
-add_action('admin_post_my_datos', 'my_datos'); 
+
 
 
 //CONTROLADOR
@@ -43,6 +43,7 @@ function my_datos()
 
     global $table;
     global $user_ID , $user_email;
+    my_group_install();
     $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
     get_currentuserinfo();
     if ('' == $user_ID) {
