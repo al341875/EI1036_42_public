@@ -27,15 +27,15 @@ function my_group_install(){
 }
 
 
-add_action('admin_post_nopriv_my_datos', 'my_datos');
-add_action('admin_post_my_datos', 'my_datos');
 echo "hola";
+add_action('admin_post_nopriv_my_datos', 'my_datos');
+add_action('admin_post_my_datos', 'my_datos'); //no autentificados
 
 //CONTROLADOR
 //Esta función realizará distintas acciones en función del valor del parámetro
 //$_REQUEST['proceso'], o sea se activara al llamar a url semejantes a 
 //https://host/wp-admin/admin-post.php?action=my_datos&proceso=r 
-if ( ! function_exists( 'my_datos' ) ) {
+//if ( ! function_exists( 'my_datos' ) ) {
 function my_datos()
 { 
 
@@ -132,8 +132,8 @@ function my_datos()
 
     get_footer();
     }
-}
+//}
 
-add_action('admin_post_nopriv_my_datos', 'my_datos');
+//add_action('admin_post_nopriv_my_datos', 'my_datos');
 //add_action('admin_post_my_datos', 'my_datos'); //no autentificados
 ?>
