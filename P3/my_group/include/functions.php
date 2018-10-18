@@ -18,19 +18,19 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 //Funcion instalación plugin. Crea tabla
 function my_group_install(){
-   
     global $table;
     $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
-    $query="CREATE TABLE IF NOT EXISTS $table (person_id INT(11) NOT NULL AUTO_INCREMENT, nombre VARCHAR(100),  email VARCHAR(100),  foto_file VARCHAR(25), clienteMail VARCHAR(100),  PRIMARY KEY(client_id))";
+    $query="CREATE TABLE IF NOT EXISTS $table (person_id INT(11) NOT NULL AUTO_INCREMENT, nombre VARCHAR(100),  email VARCHAR(100),  foto_file VARCHAR(25), clienteMail VARCHAR(100),  PRIMARY KEY(person_id))";
     echo $query;
     $pdo->exec($query);
 }
 
 
+register_activation_hook( __FILE__, 'my_group_install' );
 
 //add_action('admin_post_nopriv_my_datos', 'my_datos');//no autentificados
 add_action('admin_post_my_datos', 'my_datos'); 
-register_activation_hook( __FILE__, 'my_group_install' );
+
 
 //CONTROLADOR
 //Esta función realizará distintas acciones en función del valor del parámetro
@@ -52,6 +52,7 @@ function my_datos()
                 //no user logged in
                 exit;
     }
+
     //if (!(isset($_REQUEST['action'])) or !(isset($_REQUEST['proceso'])))  exit;
 
     get_header();
