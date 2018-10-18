@@ -13,7 +13,7 @@ include_once(plugin_dir_path( __FILE__ ).'gestionBD.php');
 
 $table = "A_cliente";
 $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
-
+echo DB_HOST;
 //seguridad wp
 if ( ! defined( 'WPINC' ) ) exit;
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -22,8 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 function my_group_install(){
     global $pdo;
     global $table;
-    $query="CREATE TABLE IF NOT EXISTS $table (person_id INT(11) NOT NULL AUTO_INCREMENT,
-    nombre VARCHAR(100), apellidos VARCHAR(100), email VARCHAR(100),  foto_file VARCHAR(25), clienteMail VARCHAR(100)  PRIMARY KEY(client_id))";
+    $query="CREATE TABLE IF NOT EXISTS $table (person_id INT(11) NOT NULL AUTO_INCREMENT, nombre VARCHAR(100), apellidos VARCHAR(100), email VARCHAR(100),  foto_file VARCHAR(25), clienteMail VARCHAR(100)  PRIMARY KEY(client_id))";
     //echo $query;
     $pdo->exec($query);
 }
