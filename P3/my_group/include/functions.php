@@ -100,7 +100,7 @@ function my_datos()
             catch (PDOExeption $e) {
                     echo ($e->getMessage());
                 }
-        default:
+        listar:
             //Listado amigos o de todos si se es administrador.
             if (is_admin()) {$rows=consultar();}
             else {$rows=consultarFiltro("email", $user_email);}
