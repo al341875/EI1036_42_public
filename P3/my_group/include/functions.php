@@ -103,8 +103,7 @@ function my_datos()
             
         case "listar":
             //Listado amigos o de todos si se es administrador.
-            echo is_admin();
-            if (is_admin()) {$rows=consultar();}
+            if (is_admin()) {$rows=consultar(); echo "222";}
             else {$rows=consultarFiltro("clienteMail", $user_email);}
             
             //if (is_array($rows)) {/* Creamos un listado como una tabla HTML*/
