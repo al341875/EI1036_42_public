@@ -51,7 +51,7 @@ function my_datos()
                 exit;
     }
     echo "aqui3";
-    if (!(isset($_REQUEST['action'])) or !(isset($_REQUEST['proceso'])))  exit;
+    //if (!(isset($_REQUEST['action'])) or !(isset($_REQUEST['proceso'])))  exit;
 
     get_header();
     switch ($_REQUEST['proceso']) {
