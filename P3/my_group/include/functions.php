@@ -12,15 +12,14 @@
 include_once(plugin_dir_path( __FILE__ ).'gestionBD.php');
 
 $table = "A_cliente";
-$pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
-echo DB_HOST;
+global $pdo
 //seguridad wp
 if ( ! defined( 'WPINC' ) ) exit;
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 //Funcion instalación plugin. Crea tabla
 function my_group_install(){
-    global $pdo;
+   
     global $table;
     $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
     $query="CREATE TABLE IF NOT EXISTS $table (person_id INT(11) NOT NULL AUTO_INCREMENT, nombre VARCHAR(100), apellidos VARCHAR(100), email VARCHAR(100),  foto_file VARCHAR(25), clienteMail VARCHAR(100)  PRIMARY KEY(client_id))";
@@ -40,10 +39,12 @@ add_action('admin_post_my_datos', 'my_datos');
 if ( ! function_exists( 'my_datos' ) ) {
 function my_datos()
 { 
-    global $pdo;
+
     global $table;
     global $$user_ID , $user_email;
-echo "aqui1";
+
+    $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
+    echo "aqui1";
     get_currentuserinfo();
     if ('' == $user_ID) {
                 //no user logged in
