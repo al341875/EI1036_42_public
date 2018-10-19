@@ -13,6 +13,8 @@ include_once(plugin_dir_path( __FILE__ ).'gestionBD.php');
 
 $table = "A_GrupoClient";
 
+
+
 //Estas 2 instrucciones me aseguran que el usuario accede a través del WP. Y no directamente
 if ( ! defined( 'WPINC' ) ) exit;
 
@@ -31,6 +33,28 @@ function my_group_install(){
 register_activation_hook( __FILE__, 'my_group_install' );
 
 
+function jal_install() {
+	global $wpdb;
+	global $jal_db_version;
+
+	$table_name = $wpdb->prefix . 'liveshoutbox';
+	
+	$charset_collate = $wpdb->get_charset_collate();
+
+	$sql = "CREATE TABLE $table_name (
+		id mediumint(9) NOT NULL AUTO_INCREMENT,
+		time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+		name tinytext NOT NULL,
+		text text NOT NULL,
+		url varchar(55) DEFAULT '' NOT NULL,
+		PRIMARY KEY  (id)
+	) $charset_collate;";
+
+	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+	dbDelta( $sql );
+
+}
+register_activation_hook( __FILE__, 'jal_install' );
 
 
 //CONTROLADOR
@@ -54,6 +78,7 @@ function my_datos()
     //if (!(isset($_REQUEST['action'])) or !(isset($_REQUEST['proceso'])))  exit;
 
     get_header();
+    echo "<div class="wrap">";
     switch ($_REQUEST['proceso']) {
     
         case "registro":
@@ -128,7 +153,7 @@ function my_datos()
             print "Opción no correcta";
         
     }
-
+echo "</div>";
     get_footer();
     }
 //}
