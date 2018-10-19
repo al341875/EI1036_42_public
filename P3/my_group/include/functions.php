@@ -25,13 +25,15 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 add_action('admin_post_my_datos', 'my_datos'); 
 
 //Funcion instalación plugin. Crea tabla
-function my_group_install1(){
-    global $table;
-    global $pdo;
+function my_groupPP(){
+    
+    $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
     $query="CREATE TABLE IF NOT EXISTS AAAA1 (person_id INT(11) NOT NULL AUTO_INCREMENT, nombre VARCHAR(100),  email VARCHAR(100),  foto_file VARCHAR(25), clienteMail VARCHAR(100),  PRIMARY KEY(person_id))";
-    $pdo->exec($query);
+    $consult = $pdo->prepare($query);
+    $a= $consult->execute (array());
+
 }
-register_activation_hook( __FILE__, 'my_group_install1' );
+register_activation_hook( __FILE__, 'my_groupPP' );
 
 
 
