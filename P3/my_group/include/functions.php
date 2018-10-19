@@ -26,8 +26,7 @@ add_action('admin_post_my_datos', 'my_datos');
 //Funcion instalación plugin. Crea tabla
 function my_group_install(){
     global $table;
-    $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
-    $query="CREATE TABLE IF NOT EXISTS AAAA (person_id INT(11) NOT NULL AUTO_INCREMENT, nombre VARCHAR(100),  email VARCHAR(100),  foto_file VARCHAR(25), clienteMail VARCHAR(100),  PRIMARY KEY(person_id))";
+    $query="CREATE TABLE IF NOT EXISTS AAAA1 (person_id INT(11) NOT NULL AUTO_INCREMENT, nombre VARCHAR(100),  email VARCHAR(100),  foto_file VARCHAR(25), clienteMail VARCHAR(100),  PRIMARY KEY(person_id))";
     $pdo->exec($query);
 }
 register_activation_hook( __FILE__, 'my_group_install' );
@@ -37,7 +36,7 @@ function jal_install() {
 	global $wpdb;
 	global $jal_db_version;
 
-	$table_name = $wpdb->prefix . 'liveshoutbox';
+	$table_name = 'liveshoutbox1';
 	
 	$charset_collate = $wpdb->get_charset_collate();
 
@@ -68,7 +67,6 @@ function my_datos()
     global $table;
     global $user_ID , $user_email;
     my_group_install();
-    $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
     get_currentuserinfo();
     if ('' == $user_ID) {
                 //no user logged in
