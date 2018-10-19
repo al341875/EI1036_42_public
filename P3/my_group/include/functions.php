@@ -10,9 +10,10 @@
  * * @version 2
  * */
 include_once(plugin_dir_path( __FILE__ ).'gestionBD.php');
+$pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
 
 $table = "A_GrupoClient";
-
+error_reporting(E_ALL);
 
 
 //Estas 2 instrucciones me aseguran que el usuario accede a través del WP. Y no directamente
@@ -24,36 +25,15 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 add_action('admin_post_my_datos', 'my_datos'); 
 
 //Funcion instalación plugin. Crea tabla
-function my_group_install(){
+function my_group_install1(){
     global $table;
+    global pdo;
     $query="CREATE TABLE IF NOT EXISTS AAAA1 (person_id INT(11) NOT NULL AUTO_INCREMENT, nombre VARCHAR(100),  email VARCHAR(100),  foto_file VARCHAR(25), clienteMail VARCHAR(100),  PRIMARY KEY(person_id))";
     $pdo->exec($query);
 }
-register_activation_hook( __FILE__, 'my_group_install' );
+register_activation_hook( __FILE__, 'my_group_install1' );
 
 
-function jal_install() {
-	global $wpdb;
-	global $jal_db_version;
-
-	$table_name = 'liveshoutbox1';
-	
-	$charset_collate = $wpdb->get_charset_collate();
-
-	$sql = "CREATE TABLE $table_name (
-		id mediumint(9) NOT NULL AUTO_INCREMENT,
-		time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
-		name tinytext NOT NULL,
-		text text NOT NULL,
-		url varchar(55) DEFAULT '' NOT NULL,
-		PRIMARY KEY  (id)
-	) $charset_collate;";
-
-	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-	dbDelta( $sql );
-
-}
-register_activation_hook( __FILE__, 'jal_install' );
 
 
 //CONTROLADOR
@@ -63,7 +43,6 @@ register_activation_hook( __FILE__, 'jal_install' );
 //if ( ! function_exists( 'my_datos' ) ) {
 function my_datos()
 { 
-
     global $table;
     global $user_ID , $user_email;
     //my_group_install();
@@ -126,10 +105,10 @@ function my_datos()
             break;
         case "listar":
             //Listado amigos o de todos si se es administrador.
-            print "VA?";
-            if (1==is_admin()) {print "VA2?";$rows=consultar(); print "VA2?";}
-            else {print "VA3?";$rows=consultarFiltro("clienteMail", $user_email);print "VA3?";}
-            print "VA?";
+
+            if (1==is_admin()) {$rows=consultar();}
+            else {$rows=consultarFiltro("clienteMail", $user_email);}
+
             if (is_array($rows)) {/* Creamos un listado como una tabla HTML*/
                 
                 print '<div><table><th>';
