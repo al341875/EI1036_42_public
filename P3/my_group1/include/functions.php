@@ -57,9 +57,7 @@ function my_datos()
     get_header();
     echo '<div class="wrap">';
     switch ($_REQUEST['proceso']) {
-    
         case "registro":
-            
             ?>
             <h1>GestiÓn de Usuarios </h1>
             <form class="fom_usuario" action="?action=my_datos&proceso=registrar" method="POST">
@@ -90,19 +88,12 @@ function my_datos()
                 return;
             }
             $query = "INSERT INTO $table (nombre, email,clienteMail) VALUES (?,?,?)";          
-            //try { 
-                $a=array($_REQUEST['userName'], $_REQUEST['email'],$_REQUEST['clienteMail'] );
-                var_dump($a);
-                $consult = $pdo->prepare($query);
-                print($query);
-                $a=$consult->execute($a);
-                if (1>$a)echo "InCorrecto";
-   
-               /* } 
-            catch (PDOExeption $e) {
-                    echo "error";
-                    echo ($e->getMessage());
-                }*/
+            $a=array($_REQUEST['userName'], $_REQUEST['email'],$_REQUEST['clienteMail'] );
+            var_dump($a);
+            $consult = $pdo->prepare($query);
+            print($query);
+            $a=$consult->execute($a);
+            if (1>$a) {echo "InCorrecto";}
             break;
         case "listar":
             //Listado amigos o de todos si se es administrador.
