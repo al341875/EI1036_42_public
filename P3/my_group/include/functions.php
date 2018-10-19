@@ -153,7 +153,7 @@ function my_datos()
             print "Opción no correcta";
         
     }
-echo "</div>";
+    echo "</div>";
     get_footer();
     }
 //}
