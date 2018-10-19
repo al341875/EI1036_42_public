@@ -157,7 +157,6 @@ echo "</div>";
     get_footer();
     }
 //}
-
 //add_action('admin_post_nopriv_my_datos', 'my_datos');
 //add_action('admin_post_my_datos', 'my_datos'); //no autentificados
 ?>
