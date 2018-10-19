@@ -9,11 +9,6 @@
  * * @license http://www.fsf.org/licensing/licenses/gpl.txt GPL 2 or later
  * * @version 2
  * */
-include_once(plugin_dir_path( __FILE__ ).'gestionBD.php');
-
-
-$table = "A_GrupoClient";
-error_reporting(E_ALL);
 
 
 //Estas 2 instrucciones me aseguran que el usuario accede a través del WP. Y no directamente
@@ -21,22 +16,22 @@ if ( ! defined( 'WPINC' ) ) exit;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-//add_action('admin_post_nopriv_my_datos', 'my_datos');//no autentificados
-add_action('admin_post_my_datos', 'my_datos'); 
+$pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
+include_once(plugin_dir_path( __FILE__ ).'gestionBD.php');
+$table = "A_GrupoCliente";
+
+error_reporting(E_ALL);
+
+
 
 //Funcion instalación plugin. Crea tabla
 function CrearT($table){
-    
-    $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
+    $pdo1 = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
     $query="CREATE TABLE IF NOT EXISTS $table (person_id INT(11) NOT NULL AUTO_INCREMENT, nombre VARCHAR(100),  email VARCHAR(100),  foto_file VARCHAR(25), clienteMail VARCHAR(100),  PRIMARY KEY(person_id))";
-    $consult = $pdo->prepare($query);
+    $consult = $pdo1->prepare($query);
     $consult->execute (array());
+}
 
-}
-function Ejecutar_crearT(){
-    CrearT("AAA");
-}
-register_activation_hook( __FILE__, 'Ejecutar_crearT');
 
 
 
@@ -50,7 +45,6 @@ function my_datos()
 { 
     global $table;
     global $user_ID , $user_email;
-    $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
     //my_group_install();
     get_currentuserinfo();
     if ('' == $user_ID) {
@@ -95,19 +89,20 @@ function my_datos()
                 print ("No has rellenado el formulario correctamente");
                 return;
             }
-            $query = "INSERT INTO     $table (nombre, email,clienteMail)
-                                VALUES (?,?,?)";            
-            try { 
-                $a=array ($_REQUEST['userName'], $_REQUEST['email'],$_REQUEST['clienteMail'] );
-                print_r ($a);
+            $query = "INSERT INTO $table (nombre, email,clienteMail) VALUES (?,?,?)";          
+            //try { 
+                $a=array($_REQUEST['userName'], $_REQUEST['email'],$_REQUEST['clienteMail'] );
+                var_dump($a);
                 $consult = $pdo->prepare($query);
-                $a= $consult->execute ($a);
+                print($query);
+                $a=$consult->execute($a);
                 if (1>$a)echo "InCorrecto";
-                } 
+   
+               /* } 
             catch (PDOExeption $e) {
+                    echo "error";
                     echo ($e->getMessage());
-                }
-            print "Operación  correcta";
+                }*/
             break;
         case "listar":
             //Listado amigos o de todos si se es administrador.
