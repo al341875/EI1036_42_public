@@ -66,7 +66,7 @@ function my_datos()
 
     global $table;
     global $user_ID , $user_email;
-    my_group_install();
+    //my_group_install();
     get_currentuserinfo();
     if ('' == $user_ID) {
                 //no user logged in

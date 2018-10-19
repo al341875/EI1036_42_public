@@ -37,7 +37,7 @@ function consultar() {
   
 }
 function consultarFiltro($campo,$valor) {
-    print $table;
+    
     global $pdo;
     global $table;
     $query = "SELECT     * FROM  $table      WHERE (?) ==(?)"; 
