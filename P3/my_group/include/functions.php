@@ -78,7 +78,7 @@ function my_datos()
     //if (!(isset($_REQUEST['action'])) or !(isset($_REQUEST['proceso'])))  exit;
 
     get_header();
-    echo "<div class="wrap">";
+    echo '<div class="wrap">';
     switch ($_REQUEST['proceso']) {
     
         case "registro":
