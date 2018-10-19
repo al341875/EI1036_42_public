@@ -27,12 +27,16 @@ function consultar() {
     global $table;
     $query = "SELECT     * FROM       $table "; 
     $consult = $pdo->prepare($query);
+    print $query;
     $a=$consult->execute(array());
-    if (1>$a)echo "InCorrecto2";
+    if (1>$a) echo "InCorrecto2";
+    else {echo "sss";}
+    var_dump($a);
     return ($consult->fetchAll(PDO::FETCH_ASSOC)); 
   
 }
 function consultarFiltro($campo,$valor) {
+    print $table;
     global $pdo;
     global $table;
     $query = "SELECT     * FROM  $table      WHERE (?) ==(?)"; 

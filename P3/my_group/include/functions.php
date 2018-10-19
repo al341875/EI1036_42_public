@@ -27,7 +27,7 @@ add_action('admin_post_my_datos', 'my_datos');
 function my_group_install(){
     global $table;
     $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
-    $query="CREATE TABLE IF NOT EXISTS $table (person_id INT(11) NOT NULL AUTO_INCREMENT, nombre VARCHAR(100),  email VARCHAR(100),  foto_file VARCHAR(25), clienteMail VARCHAR(100),  PRIMARY KEY(person_id))";
+    $query="CREATE TABLE IF NOT EXISTS AAAA (person_id INT(11) NOT NULL AUTO_INCREMENT, nombre VARCHAR(100),  email VARCHAR(100),  foto_file VARCHAR(25), clienteMail VARCHAR(100),  PRIMARY KEY(person_id))";
     $pdo->exec($query);
 }
 register_activation_hook( __FILE__, 'my_group_install' );
@@ -129,8 +129,8 @@ function my_datos()
         case "listar":
             //Listado amigos o de todos si se es administrador.
             print "VA?";
-            if (is_admin()) {$rows=consultar(); print "VA2?";}
-            else {$rows=consultarFiltro("clienteMail", $user_email);print "VA3?";}
+            if (1==is_admin()) {print "VA2?";$rows=consultar(); print "VA2?";}
+            else {print "VA3?";$rows=consultarFiltro("clienteMail", $user_email);print "VA3?";}
             print "VA?";
             if (is_array($rows)) {/* Creamos un listado como una tabla HTML*/
                 
