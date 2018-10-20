@@ -22,6 +22,18 @@ $table = "A_GrupoCliente";
 
 error_reporting(E_ALL);
 
+function remove_admin_bar() {
+    //eliminamos la barra */
+    if (!current_user_can('administrator')){
+        add_filter ('show_admin_bar' ,  '__return_false');
+        add_action('get_header', 'galussothemes_remove_admin_bar');
+    }
+     
+    function galussothemes_remove_admin_bar(){
+        remove_action('wp_head', '_admin_bar_bump_cb');
+    }
+}
+ 
 
 
 //Funcion instalación plugin. Crea tabla
@@ -47,6 +59,13 @@ function my_datos()
     global $pdo;
 
     global $user_ID , $user_email;
+    remove_admin_bar();
+    if ( ! is_admin() ) {
+        echo "You are viewing the theme";
+   } else {
+        echo "You are viewing the WordPress Administration Panels";
+   }
+   //add_filter ( "show_admin_bar" , "__return_false",1000 );
     //my_group_install();
     print("Bienvenido $user_email");
     get_currentuserinfo();
@@ -54,7 +73,9 @@ function my_datos()
                 //no user logged in
                 exit;
     }
-
+    //Al estar autentificado eliminamos que no se vea el dashboard
+    //Excepto al administrador
+    
     if (!(isset($_REQUEST['action'])) or !(isset($_REQUEST['proceso']))) { print("Opciones no correctas $user_email"); exit;}
 
     get_header();
@@ -96,6 +117,7 @@ function my_datos()
             $consult = $pdo->prepare($query);
             $a=$consult->execute($a);
             if (1>$a) {echo "InCorrecto $query";}
+            else wp_redir("wp-admin/admin-post.php?action=my_datos&proceso=listar");
             break;
         case "listar":
             //Listado amigos o de todos si se es administrador.
