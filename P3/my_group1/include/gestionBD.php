@@ -40,6 +40,8 @@ function consultarFiltro($campo,$valor) {
     global $table;
     $query = "SELECT     * FROM  $table      WHERE (?) ==(?)"; 
     print $query;
+    print $campo;
+    print $valor;
     $consult = $pdo->prepare($query);
     $a=$consult->execute(array($campo,$valor));
     if (1>$a) echo "No hay valores que cumplan la consulta";

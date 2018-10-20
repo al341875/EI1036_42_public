@@ -44,15 +44,18 @@ function CrearT($table){
 function my_datos()
 { 
     global $table;
+    global $pdo;
+
     global $user_ID , $user_email;
     //my_group_install();
+    print("Bienvenido $user_email");
     get_currentuserinfo();
     if ('' == $user_ID) {
                 //no user logged in
                 exit;
     }
 
-    //if (!(isset($_REQUEST['action'])) or !(isset($_REQUEST['proceso'])))  exit;
+    if (!(isset($_REQUEST['action'])) or !(isset($_REQUEST['proceso']))) { print("Opciones no correctas $user_email"); exit;}
 
     get_header();
     echo '<div class="wrap">';
@@ -87,17 +90,16 @@ function my_datos()
                 print ("No has rellenado el formulario correctamente");
                 return;
             }
-            $query = "INSERT INTO $table (nombre, email,clienteMail) VALUES (?,?,?)";          
+            $query = "INSERT INTO $table (nombre, email,clienteMail) VALUES (?,?,?)";         
             $a=array($_REQUEST['userName'], $_REQUEST['email'],$_REQUEST['clienteMail'] );
-            var_dump($a);
+            //$pdo1 = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
             $consult = $pdo->prepare($query);
-            print($query);
             $a=$consult->execute($a);
-            if (1>$a) {echo "InCorrecto";}
+            if (1>$a) {echo "InCorrecto $query";}
             break;
         case "listar":
             //Listado amigos o de todos si se es administrador.
-            if (1==is_admin()) {$rows=consultar();}
+            if (current_user_can('administrator')) {$rows=consultar();}
             else {$rows=consultarFiltro("clienteMail", $user_email);}
 
             if (is_array($rows)) {/* Creamos un listado como una tabla HTML*/
