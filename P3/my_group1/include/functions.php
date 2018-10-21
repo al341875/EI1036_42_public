@@ -20,20 +20,7 @@ $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSW
 include_once(plugin_dir_path( __FILE__ ).'gestionBD.php');
 $table = "A_GrupoCliente";
 
-error_reporting(E_ALL);
 
-function remove_admin_bar() {
-    //eliminamos la barra */
-    if (!current_user_can('administrator')){
-        add_filter ('show_admin_bar' ,  '__return_false');
-        add_action('get_header', 'galussothemes_remove_admin_bar');
-    }
-     
-    function galussothemes_remove_admin_bar(){
-        remove_action('wp_head', '_admin_bar_bump_cb');
-    }
-}
- 
 
 
 //Funcion instalación plugin. Crea tabla
@@ -52,29 +39,22 @@ function CrearT($table){
 //Esta función realizará distintas acciones en función del valor del parámetro
 //$_REQUEST['proceso'], o sea se activara al llamar a url semejantes a 
 //https://host/wp-admin/admin-post.php?action=my_datos&proceso=r 
-//if ( ! function_exists( 'my_datos' ) ) {
+
 function my_datos()
 { 
     global $table;
     global $pdo;
 
     global $user_ID , $user_email;
-    remove_admin_bar();
-    if ( ! is_admin() ) {
-        echo "You are viewing the theme";
-   } else {
-        echo "You are viewing the WordPress Administration Panels";
-   }
-   //add_filter ( "show_admin_bar" , "__return_false",1000 );
-    //my_group_install();
-    print("Bienvenido $user_email");
-    get_currentuserinfo();
+    
+    
+    wp_get_current_user();
     if ('' == $user_ID) {
                 //no user logged in
                 exit;
     }
-    //Al estar autentificado eliminamos que no se vea el dashboard
-    //Excepto al administrador
+    
+    
     
     if (!(isset($_REQUEST['action'])) or !(isset($_REQUEST['proceso']))) { print("Opciones no correctas $user_email"); exit;}
 
@@ -117,7 +97,7 @@ function my_datos()
             $consult = $pdo->prepare($query);
             $a=$consult->execute($a);
             if (1>$a) {echo "InCorrecto $query";}
-            else wp_redir("wp-admin/admin-post.php?action=my_datos&proceso=listar");
+            else wp_redirect(admin_url( 'admin-post.php?action=my_datos&proceso=listar'));
             break;
         case "listar":
             //Listado amigos o de todos si se es administrador.
@@ -146,9 +126,18 @@ function my_datos()
         
     }
     echo "</div>";
+    // get_footer ademas del pie de página carga el toolbar de administración de wordpres si es un 
+    //usuario autentificado, por ello voy a borrar la acción cuando no es un administrador para que no aparezca.
+    if (!current_user_can('administrator')) {
+
+        // for the admin page
+        remove_action('admin_footer', 'wp_admin_bar_render', 1000);
+        // for the front-end
+        remove_action('wp_footer', 'wp_admin_bar_render', 1000);
+    }
+
     get_footer();
     }
-//}
 //add_action('admin_post_nopriv_my_datos', 'my_datos');
 //add_action('admin_post_my_datos', 'my_datos'); //no autentificados
 ?>
