@@ -9,7 +9,7 @@ License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
 // Establecemos espacio nombres
-
+namespace Foo\Bar;
 
 // Registramos el widget
 function load_my_widget() {
