@@ -17,7 +17,7 @@ if ( ! defined( 'WPINC' ) ) exit;
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
-include_once(plugin_dir_path( __FILE__ ).'gestionBD.php');
+include_once(plugin_dir_path( __FILE__ ).'BDgestion.php');
 $table = "A_GrupoCliente";
 
 
@@ -60,6 +60,7 @@ function my_datos()
 
     get_header();
     echo '<div class="wrap">';
+
     switch ($_REQUEST['proceso']) {
         case "registro":
             ?>
