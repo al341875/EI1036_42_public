@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: my_widget1
-Description: This plugin <strong>updates all urls in your wordpress website</strong> by replacing old urls with new urls.
+Plugin Name: my_Plugin_Widget1
+Description: Este plugin añade un widget que pone un título y una descripción.
 Author: dllido
 Author Email: dllido@uji.es
 Version: 1.0
