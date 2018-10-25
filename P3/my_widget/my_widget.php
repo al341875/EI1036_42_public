@@ -17,7 +17,7 @@ function load_my_widget() {
 add_action( 'widgets_init', 'load_my_widget' );
 
 // Creamos el widget 
-class my_widget extends \WP_Widget {
+class my_widget extends WP_Widget {
 
 public function __construct() {
 		$widget_ops = array( 
