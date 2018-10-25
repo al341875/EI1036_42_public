@@ -24,7 +24,7 @@ public function __construct() {
 			'classname' => 'my_widget',
 			'description' => 'My Widget is awesome',
 		);
-		parent::__construct( 'my_widget', 'My Widget', $widget_ops );
+		parent::__construct( 'my_widget1', 'My Widget1', $widget_ops );
 	}	
 
 
