@@ -15,7 +15,6 @@
 if ( ! defined( 'WPINC' ) ) exit;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
-namespace My_Plugin;
 
 $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
 $table = "A_GrupoCliente";
@@ -40,7 +39,7 @@ function CrearT($table){
 //$_REQUEST['proceso'], o sea se activara al llamar a url semejantes a 
 //https://host/wp-admin/admin-post.php?action=my_datos&proceso=r 
 
-function my_datos()
+function MP_my_datos()
 { 
     global $table;
     global $pdo;
