@@ -16,17 +16,17 @@ if ( ! defined( 'WPINC' ) ) exit;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-$pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
-$table = "A_GrupoCliente";
+
 
 
 
 
 //Funcion instalación plugin. Crea tabla
 function MP_CrearT($table){
-    $pdo1 = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
+    
+    $MP_pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
     $query="CREATE TABLE IF NOT EXISTS $table (person_id INT(11) NOT NULL AUTO_INCREMENT, nombre VARCHAR(100),  email VARCHAR(100),  foto_file VARCHAR(25), clienteMail VARCHAR(100),  PRIMARY KEY(person_id))";
-    $consult = $pdo1->prepare($query);
+    $consult = $MP_pdo->prepare($query);
     $consult->execute (array());
 }
 
@@ -39,13 +39,13 @@ function MP_CrearT($table){
 //$_REQUEST['proceso'], o sea se activara al llamar a url semejantes a 
 //https://host/wp-admin/admin-post.php?action=my_datos&proceso=r 
 
-function MP_my_datos()
+function MP_my_datos($table)
 { 
-    global $table;
-    global $pdo;
+
 
     global $user_ID , $user_email;
     
+    $MP_pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
     
     wp_get_current_user();
     if ('' == $user_ID) {
@@ -94,7 +94,7 @@ function MP_my_datos()
             $query = "INSERT INTO $table (nombre, email,clienteMail) VALUES (?,?,?)";         
             $a=array($_REQUEST['userName'], $_REQUEST['email'],$_REQUEST['clienteMail'] );
             //$pdo1 = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
-            $consult = $pdo->prepare($query);
+            $consult = $MP_pdo->prepare($query);
             $a=$consult->execute($a);
             if (1>$a) {echo "InCorrecto $query";}
             else wp_redirect(admin_url( 'admin-post.php?action=my_datos&proceso=listar'));
@@ -105,7 +105,7 @@ function MP_my_datos()
             if (current_user_can('administrator')) {$query = "SELECT     * FROM       $table ";}
             else {$query = "SELECT     * FROM  $table      WHERE 'clienteMail' =?";
                 array($user_email);} 
-            $consult = $pdo->prepare($query);
+            $consult = $MP_pdo->prepare($query);
             $rows=$consult->execute($a);
             if (1>$rows && is_array($rows)) {/* Creamos un listado como una tabla HTML*/
                 print '<div><table><th>';
