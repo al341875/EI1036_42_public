@@ -15,6 +15,7 @@
 if ( ! defined( 'WPINC' ) ) exit;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
+namespace /my_widget
 
 $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
 $table = "A_GrupoCliente";
