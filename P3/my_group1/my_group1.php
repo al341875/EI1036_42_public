@@ -24,7 +24,7 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 //La siguiente sentencia activaria la acción para todos los usuarios.
 //add_action('admin_post_nopriv_my_datos', 'my_datos');
-//namespace My_Plugin;
+namespace My_Plugin;
 include(plugin_dir_path( __FILE__ ).'include/functions.php');
 
 register_activation_hook( __FILE__, 'Ejecutar_crearT');
