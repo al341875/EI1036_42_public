@@ -39,12 +39,10 @@ function MP_CrearT($table){
 //$_REQUEST['proceso'], o sea se activara al llamar a url semejantes a 
 //https://host/wp-admin/admin-post.php?action=my_datos&proceso=r 
 
-function MP_my_datos($table)
+function MP_my_datos()
 { 
-
-
     global $user_ID , $user_email;
-    
+    $table=A_GrupoCliente;
     $MP_pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
     
     wp_get_current_user();
