@@ -103,7 +103,7 @@ function MP_my_datos()
             //Listado amigos o de todos si se es administrador.
             $a=array();
             if (current_user_can('administrator')) {$query = "SELECT     * FROM       $table ";}
-            else {$query = "SELECT     * FROM  $table      WHERE clienteMail =?";
+            else {$query = "SELECT     * FROM  $table      WHERE 'clienteMail' =?";
                 array($user_email);} 
             $consult = $pdo->prepare($query);
             $rows=$consult->execute($a);
