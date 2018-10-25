@@ -32,7 +32,33 @@ function MP_CrearT($table){
 
 
 
+function MP_Register_Form($MP_user , $user_email)
+{//formulario registro amigos de $user_email
+    ?>
 
+    <h1>GestiÓn de Usuarios </h1>
+    <form class="fom_usuario" action="?action=my_datos&proceso=registrar" method="POST">
+        <label for="clienteMail">Tu correo</label>
+        <br/>
+        <input type="text" name="clienteMail"  size="20" maxlength="25" value="<?php print $user_email?>"
+        readonly />
+        <br/>
+        <legend>Datos básicos</legend>
+        <label for="nombre">Nombre</label>
+        <br/>
+        <input type="text" name="userName" class="item_requerid" size="20" maxlength="25" value="<?php print $MP_user["userName"] ?>"
+        placeholder="Miguel Cervantes" />
+        <br/>
+        <label for="email">Email</label>
+        <br/>
+        <input type="text" name="email" class="item_requerid" size="20" maxlength="25" value="<?php print $MP_user["email"] ?>"
+        placeholder="kiko@ic.es" />
+        <br/>
+        <input type="submit" value="Enviar">
+        <input type="reset" value="Deshacer">
+    </form>
+<?php
+}
 
 //CONTROLADOR
 //Esta función realizará distintas acciones en función del valor del parámetro
@@ -60,29 +86,8 @@ function MP_my_datos()
 
     switch ($_REQUEST['proceso']) {
         case "registro":
-            ?>
-            <h1>GestiÓn de Usuarios </h1>
-            <form class="fom_usuario" action="?action=my_datos&proceso=registrar" method="POST">
-                <label for="clienteMail">Tu correo</label>
-                <br/>
-                <input type="text" name="clienteMail"  size="20" maxlength="25" value="<?php print $user_email?>"
-                readonly />
-                <br/>
-                <legend>Datos básicos</legend>
-                <label for="nombre">Nombre</label>
-                <br/>
-                <input type="text" name="userName" class="item_requerid" size="20" maxlength="25" value="<?php print $userName ?>"
-                placeholder="Miguel Cervantes" />
-                <br/>
-                <label for="email">Email</label>
-                <br/>
-                <input type="text" name="email" class="item_requerid" size="20" maxlength="25" value="<?php print $email ?>"
-                placeholder="kiko@ic.es" />
-                <br/>
-                <input type="submit" value="Enviar">
-                <input type="reset" value="Deshacer">
-            </form>
-            <?php
+            $MP_user=null; //variable a rellenar cuando usamos modificar con este formulario
+            MP_Register_Form($MP_user,$user_email);
             break;
         case "registrar":
             if (count($_REQUEST) < 3) {
@@ -101,8 +106,12 @@ function MP_my_datos()
             //Listado amigos o de todos si se es administrador.
             $a=array();
             if (current_user_can('administrator')) {$query = "SELECT     * FROM       $table ";}
-            else {$query = "SELECT     * FROM  $table      WHERE 'clienteMail' =?";
-                array($user_email);} 
+            else {$campo="clienteMail";
+                $query = "SELECT     * FROM  $table      WHERE $campo =?";
+                $a=array( $user_email);
+ 
+            } 
+
             $consult = $MP_pdo->prepare($query);
             $a=$consult->execute($a);
             $rows=$consult->fetchAll(PDO::FETCH_ASSOC);
