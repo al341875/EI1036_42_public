@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: widget_plugin1
+Plugin Name: my_widget1
 Description: This plugin <strong>updates all urls in your wordpress website</strong> by replacing old urls with new urls.
 Author: dllido
 Author Email: dllido@uji.es
@@ -12,12 +12,12 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 // Registramos el widget
 function load_my_widget() {
-	register_widget( 'my_widget' );
+	register_widget( 'my_widget1' );
 }
 add_action( 'widgets_init', 'load_my_widget' );
 
 // Creamos el widget 
-class my_widget extends WP_Widget {
+class my_widget1 extends WP_Widget {
 
 public function __construct() {
 		$widget_ops = array( 
