@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Mi primer widget de plugin
+Plugin Name: widget_plugin1
 Description: This plugin <strong>updates all urls in your wordpress website</strong> by replacing old urls with new urls.
 Author: dllido
 Author Email: dllido@uji.es
