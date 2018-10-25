@@ -17,7 +17,6 @@ if ( ! defined( 'WPINC' ) ) exit;
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
-include_once(plugin_dir_path( __FILE__ ).'BDgestion.php');
 $table = "A_GrupoCliente";
 
 
@@ -102,11 +101,13 @@ function my_datos()
             break;
         case "listar":
             //Listado amigos o de todos si se es administrador.
-            if (current_user_can('administrator')) {$rows=consultar();}
-            else {$rows=consultarFiltro("clienteMail", $user_email);}
-
-            if (is_array($rows)) {/* Creamos un listado como una tabla HTML*/
-                
+            $a=array();
+            if (current_user_can('administrator')) {$query = "SELECT     * FROM       $table ";}
+            else {$query = "SELECT     * FROM  $table      WHERE clienteMail =?";
+                array($user_email);} 
+            $consult = $pdo->prepare($query);
+            $rows=$consult->execute($a);
+            if (1>$rows && is_array($rows)) {/* Creamos un listado como una tabla HTML*/
                 print '<div><table><th>';
                 foreach ( array_keys($rows[0])as $key) {
                     echo "<td>", $key,"</td>";
@@ -121,6 +122,7 @@ function my_datos()
                 }
                 print "</table></div>";
             }
+            else{echo "No existen valores";}
             break;
         default:
             print "Opción no correcta";
