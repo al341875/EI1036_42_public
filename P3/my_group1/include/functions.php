@@ -104,8 +104,9 @@ function MP_my_datos()
             else {$query = "SELECT     * FROM  $table      WHERE 'clienteMail' =?";
                 array($user_email);} 
             $consult = $MP_pdo->prepare($query);
-            $rows=$consult->execute($a);
-            if (1>$rows && is_array($rows)) {/* Creamos un listado como una tabla HTML*/
+            $a=$consult->execute($a);
+            $rows=$consult->fetchAll(PDO::FETCH_ASSOC);
+            if (is_array($rows)) {/* Creamos un listado como una tabla HTML*/
                 print '<div><table><th>';
                 foreach ( array_keys($rows[0])as $key) {
                     echo "<td>", $key,"</td>";
