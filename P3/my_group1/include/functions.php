@@ -42,7 +42,7 @@ function MP_CrearT($table){
 function MP_my_datos()
 { 
     global $user_ID , $user_email;
-    $table=A_GrupoCliente;
+    $table='A_GrupoCliente';
     $MP_pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
     
     wp_get_current_user();
