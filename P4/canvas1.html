@@ -1,0 +1,65 @@
+<html lang="en">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no" ;="">
+	<title>Html5 Pintar en Canvas </title>
+</head>
+
+<body>
+	<H1>Html5 Pintar en Canvas</H1>
+	<canvas id="sketchpad" width="100" height="60" style="background-color: coral;"></canvas>
+	<div id="guardar"> COPIAR</div>
+	<img id="imagen" src="" width="100" height="60">
+	<script type="text/javascript" charset="utf-8">
+		function ready() {
+			var imagen = document.querySelector("#imagen");
+			var canvas = document.querySelector("#sketchpad");
+			var context = canvas.getContext('2d');
+			//Posición del Ratón
+			function getMousePos(canvas, evt) {
+				var rect = canvas.getBoundingClientRect();
+				return {
+					x: evt.clientX - rect.left,
+					y: evt.clientY - rect.top
+				};
+			}
+			var drawer = {
+				isDrawing: false,
+				mousedown: function (coors) {
+					context.beginPath();
+					context.moveTo(coors.x, coors.y);
+					this.isDrawing = true;
+				},
+				mousemove: function (coors) {
+					if (this.isDrawing) {
+						context.lineTo(coors.x, coors.y);
+						context.stroke();
+					}
+				},
+				mouseup: function (coors) {
+					if (this.isDrawing) {
+						this.mousemove(coors);
+						this.isDrawing = false;
+					}
+				}
+			}
+			canvas.addEventListener('mousedown', function (evt) {
+				drawer[evt.type](getMousePos(canvas, evt));
+			}, false);
+			canvas.addEventListener('mousemove', function (evt) {
+				drawer[evt.type](getMousePos(canvas, evt));
+			}, false);
+			canvas.addEventListener('mouseup', function (evt) {
+				drawer[evt.type](getMousePos(canvas, evt));
+			}, false);
+			document.querySelector("#guardar").addEventListener("click", function () {
+				imagen.src = canvas.toDataURL();
+			});
+		}
+		ready()
+	</script>
+</body>
+
+</html>

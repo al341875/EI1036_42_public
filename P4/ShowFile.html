@@ -1,0 +1,42 @@
+<html lang="en">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>Html5 IMAGE FILE</title>
+
+</head>
+
+<body>
+	<H1>HTML5-IMG</H1>
+	</p>
+	<p> <img id="img_foto" src="" width="100" height="60"></p>
+	
+
+		<form id="envioDib" action="html_grafico_guardar.php" method="POST" enctype="multipart/form-data">
+
+			<input name="foto" id="foto" type="file">
+
+	
+	</form>
+	<script type="text/javascript" charset="utf-8">
+		function mostrarFoto(file, imagen) {
+			var reader = new FileReader();
+			reader.addEventListener("load", function () {
+				imagen.src = reader.result;
+			});
+			reader.readAsDataURL(file);
+		}
+
+		function ready() {
+			var fichero = document.querySelector("#foto");
+			var imagen = document.querySelector("#img_foto");
+			fichero.addEventListener("change", function (event) {
+				mostrarFoto(this.files[0], imagen);
+			});
+		}
+		ready();
+	</script>
+</body>
+
+</html>

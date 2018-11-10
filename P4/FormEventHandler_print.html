@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+			<title>Hola</title>
+			<link rel="stylesheet" href="css-print.css" type="text/css" media="print" />
+			<style type="text/css">
+				
+				.button {
+					background-color: THISTLE;
+					border-radius: 9px;
+					color: purple;
+					padding: .5em;
+					text-decoration: bold;
+					
+				}
+			
+			.button:focus,
+			.button:hover {
+				background-color: darkblue;
+			}
+			
+			</style>
+			
+			<script type="text/javascript">
+				function validar(event) {
+						var p=event.target;
+						var inputs = p.getElementsByTagName('input');
+						for(var i = 0; i < inputs.length; i++) {
+							if (inputs[i].getAttribute('type')=='text' && inputs[i].value.length<4){
+								p.querySelector("#errores").textContent="Escriba por lo menos 4 caracteres en el campo "+inputs[i].getAttribute('name');
+								inputs[i].focus();
+								event.preventDefault();
+								return(false);
+							} }
+						return(true);
+				}
+			
+			function imprimir() {
+				window.print();
+			}
+			function ready()
+			{ document.querySelector("#form_reg").addEventListener("submit",validar);
+				document.querySelector("#imprimir").addEventListener("click",imprimir);
+			}
+			document.addEventListener("DOMContentLoaded", ready);
+			
+			
+				//window.onload=detectores();
+				</script>
+			</head>
+	<body>
+		<header>
+		<ul id="todoItems">
+		</ul>
+		<h1>Registrar</h1>
+				<h2  id="imprimir"> <a class="button">Imprimir</a> </h2>
+		</header>
+
+		<section id="central">
+		
+		
+		<form method="post" id="form_reg" action="home.html">
+			<p id="errores"></p>
+			<dl>
+				<dt>Nombre:<input type="text" size="10" name="nombre"/></dt>
+				<dt>Apellido:<input type="text" size="20" name="apellido"/></dt>
+				<dt>Mail:<input type="email" size="20" name="email"/></dt>
+				<dt>Contraseña: <input type="password" size="10" name="clave"/></dt>
+				<dt> <input type="submit" class="button" value="Registrar"/></dt>
+			</dl>
+		</form>
+		</section>
+		
+	</body>
+</html>

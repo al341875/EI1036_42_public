@@ -1,0 +1,26 @@
+
+
+body
+{   
+
+    background-color: transparent;
+    marging: 10px auto;
+    padding: 15px 15px 15px 15px ;
+}
+
+
+
+form
+{ 
+    width: 70%;
+    background-color: transparent;
+    margin: 10 auto; /* Centrado */
+    padding: 25px 25px 25px 25px;
+		color: darkgray
+		
+	
+}
+header
+{display:none}
+.button{background-color:gray;color:black; font-style:bold}
+

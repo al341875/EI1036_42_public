@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Hola</title>
+<script type="text/javascript">
+	function EventosCanvas(){
+		
+	var canvas = document.getElementById("lienzo");
+	var ClientRect = canvas.getBoundingClientRect();
+	if (canvas && canvas.getContext) {
+		var ctx = canvas.getContext("2d");
+		if (ctx) {
+			tam=50;
+			let x=Math.random() * (ClientRect.left-tam);
+			let y=Math.random() * (ClientRect.top-tam);
+			alert (x);
+			alert (y);
+		  ctx.fillRect(x,y,x+tam,y+tam);
+			ctx.strokeStyle = "red";
+			ctx.fillstyle="green";
+			ctx.stroke();
+			ctx.fill();
+			var output = document.getElementById("output");
+			
+			
+			
+			canvas.addEventListener("click",function(evt) {
+															var mousePos = oMousePos(canvas, evt);
+															if ( (x+tam < mousePos.x  || x > mousePos.x ) && ( y+100 > mousePos.y  || y < mousePos.y ) ) {ctx.fillstyle="red"; ctx.fill();}
+															else {alert ("nada");}}
+															, false);
+															
+			canvas.addEventListener("mousemove", function(evt) {
+															var mousePos = oMousePos(canvas, evt);
+															marcarCoords(output, mousePos.x, mousePos.y,canvas)
+															}, false);
+			canvas.addEventListener("mouseout", function(evt) {
+																											limpiarCoords(canvas);
+																											}, false);
+		}
+	}
+	}
+
+function marcarCoords(object, x, y,canvas){
+	coordenada=document.querySelector("#position span");
+	coordenada.innerHTML="x: "+x+", y: "+y ;
+	var output = document.getElementById("output");
+	output.innerHTML = ("x: "+x+", y: "+y);
+	output.style.top= (y+10)+"px";
+	output.style.left= (x+10)+"px";
+	output.style.backgroundColor="#FFF";
+	output.style.border="1px solid #d9d9d9"
+	canvas.style.cursor = "pointer";
+}
+function limpiarCoords(canvas){
+
+	output.innerHTML ="";
+	output.style.top= 0+"px";
+	output.style.left= 0+"px";
+	output.style.backgroundColor="transparent"
+	output.style.border="none";
+	canvas.style.cursor = "default";
+}
+
+function oMousePos(canvas, evt) {
+	var ClientRect = canvas.getBoundingClientRect();
+	return {//objeto
+		x: Math.round(evt.clientX - ClientRect.left),
+		y: Math.round(evt.clientY - ClientRect.top)
+	}
+}
+
+
+function detectores()
+{EventosCanvas();
+    }
+
+document.addEventListener("DOMContentLoaded", function (){
+
+													detectores()});
+
+
+</script>
+</head>
+<body>
+	
+    <h1>Ejemplo Tutorial Canvas</h1>
+		<h2 id="position"> Ultima posición: <span>Ninguna</span> </h2>
+		<!--<aside><h3 hidden="">Vamos a estudiar el CANVAS</h3>-->
+			
+			<div id="container" style="position:relative; width:250px; height:220px; margin:0 auto 30px auto;">
+				<canvas id="lienzo" width="250" height="220" style="cursor: default; background-color: gray; border: 1px;" >Su navegador no soporta canvas :( </canvas>
+				<div id="output" style="position: absolute; padding: 5px; min-width: 100px; top: 0px; left: 0px; background-color: transparent; border: none;"></div>
+			</div>
+			<p class="text-center"><em class="gem">Pase por encima del canvas para obtener la posición actual del <strong>ratón</strong>.</em></p>
+		<!--/aside-->
+
+</body>
+</html>
