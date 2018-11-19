@@ -35,7 +35,7 @@ function MP_CrearT($table){
 function MP_Register_Form($MP_user , $user_email)
 {//formulario registro amigos de $user_email
     ?>
-    <h1>GestiÓn de Usuarios </h1>
+    <h1>Gestión de Usuarios </h1>
     <form class="fom_usuario" action="?action=my_datos&proceso=registrar" method="POST">
         <label for="clienteMail">Tu correo</label>
         <br/>
