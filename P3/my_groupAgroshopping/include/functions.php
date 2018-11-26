@@ -95,7 +95,7 @@ function AS_MP_my_datos()
             break;
         case "registrar":
             $fotoURL="";
-            $IMAGENES_USUARIOS = '/httpdocs/Lab/P1/img/';
+            $IMAGENES_USUARIOS = '../img/';
             if(array_key_exists('foto_file', $_FILES) && $_POST['email']) {
             $fotoURL = sanitize_text_field($IMAGENES_USUARIOS.$_POST['userName']."_".$_FILES['foto_file']['name']);
             if (move_uploaded_file($_FILES['foto_file']['tmp_name'], $fotoURL))
