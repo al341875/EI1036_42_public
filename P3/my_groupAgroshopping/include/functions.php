@@ -95,7 +95,7 @@ function AS_MP_my_datos()
             break;
         case "registrar":
             $fotoURL="";
-            $IMAGENES_USUARIOS = './httpdocs/Lab/P1/img/';
+            $IMAGENES_USUARIOS = '../img/';
             if(array_key_exists('foto_file', $_FILES) && $_POST['email']) {
             $fotoURL = sanitize_text_field($IMAGENES_USUARIOS.$_POST['userName']."_".$_FILES['foto_file']['name']);
             if (move_uploaded_file($_FILES['foto_file']['tmp_name'], $fotoURL))
@@ -137,7 +137,7 @@ function AS_MP_my_datos()
                     print "<tr>";
                     foreach ($row as $key => $val) {
                         if($key == "foto_file"){
-                            echo "<td><img src='$/httpdocs/Lab/P1/img/ml_descarga.jpg.jpg' border='0' width='300' height='100'></td>";  
+                            echo "<td><img src='$val' border='0' width='300' height='100'></td>";  
         
                         }else {
                       echo "<td>", $val, "</td>";
