@@ -127,7 +127,8 @@ function AS_MP_my_datos()
             $a=$consult->execute($a);
             $rows=$consult->fetchAll(PDO::FETCH_ASSOC);
             if (is_array($rows)) {/* Creamos un listado como una tabla HTML*/
-                print '<div><table><th>';
+                //print '<div><table><th>';
+                print '<table><thead>';
                 foreach ( array_keys($rows[0])as $key) {
                     echo "<td>", $key,"</td>";
                 }
@@ -144,7 +145,7 @@ function AS_MP_my_datos()
                     }
                     print "</tr>";
                 }
-                print "</table></div>";
+                print "</table></thead>";
             }
             else{echo "No existen valores";}
             break;
