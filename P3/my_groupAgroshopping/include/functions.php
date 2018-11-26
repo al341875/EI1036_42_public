@@ -91,7 +91,7 @@ function AS_MP_my_datos()
     switch ($_REQUEST['proceso']) {
         case "registro":
             $MP_user=null; //variable a rellenar cuando usamos modificar con este formulario
-            MP_Register_Form($MP_user,$user_email);
+            AS_MP_Register_Form($MP_user,$user_email);
             break;
         case "registrar":
             $fotoURL="";
