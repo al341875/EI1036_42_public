@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 
 //Funcion instalación plugin. Crea tabla
-function MP_CrearT($table){
+function AS_MP_CrearT($table){
     
     $MP_pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
     $query="CREATE TABLE IF NOT EXISTS $table (person_id INT(11) NOT NULL AUTO_INCREMENT, nombre VARCHAR(100),  email VARCHAR(100),  foto_file VARCHAR(25), clienteMail VARCHAR(100),  PRIMARY KEY(person_id))";
@@ -32,7 +32,7 @@ function MP_CrearT($table){
 
 
 
-function MP_Register_Form($MP_user , $user_email)
+function AS_MP_Register_Form($MP_user , $user_email)
 {//formulario registro amigos de $user_email
     ?>
     <h1>Gestión de Usuarios </h1>
@@ -53,6 +53,8 @@ function MP_Register_Form($MP_user , $user_email)
         <input type="text" name="email" class="item_requerid" size="20" maxlength="25" value="<?php print $MP_user["email"] ?>"
         placeholder="kiko@ic.es" />
         <br/>
+        <input type="file" name="foto_file" class="item_requerid" size="20" maxlength="25" value="<?php print $foto_file ?>" />
+		<br/>
         <input type="submit" value="Enviar">
         <input type="reset" value="Deshacer">
     </form>
@@ -64,7 +66,7 @@ function MP_Register_Form($MP_user , $user_email)
 //$_REQUEST['proceso'], o sea se activara al llamar a url semejantes a 
 //https://host/wp-admin/admin-post.php?action=my_datos&proceso=r 
 
-function MP_my_datos()
+function AS_MP_my_datos()
 { 
     global $user_ID , $user_email;
     $table='A_GrupoCliente';
@@ -89,12 +91,19 @@ function MP_my_datos()
             MP_Register_Form($MP_user,$user_email);
             break;
         case "registrar":
+            $fotoURL="";
+            $IMAGENES_USUARIOS = '../img/';
+            if(array_key_exists('foto_file', $_FILES) && $_POST['email']) {
+            $fotoURL = sanitize_text_field($IMAGENES_USUARIOS.$_POST['userName']."_".$_FILES['foto_file']['name']);
+            if (move_uploaded_file($_FILES['foto_file']['tmp_name'], $fotoURL))
+                { echo "foto subida con éxito";
+            }}
             if (count($_REQUEST) < 3) {
                 print ("No has rellenado el formulario correctamente");
                 return;
             }
-            $query = "INSERT INTO $table (nombre, email,clienteMail) VALUES (?,?,?)";         
-            $a=array($_REQUEST['userName'], $_REQUEST['email'],$_REQUEST['clienteMail'] );
+            $query = "INSERT INTO $table (nombre, email,clienteMail,foto_file) VALUES (?,?,?,?)";         
+            $a=array($_REQUEST['userName'], $_REQUEST['email'],$_REQUEST['clienteMail'] ,$fotoURL );
             //$pdo1 = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
             $consult = $MP_pdo->prepare($query);
             $a=$consult->execute($a);
@@ -123,7 +132,12 @@ function MP_my_datos()
                 foreach ($rows as $row) {
                     print "<tr>";
                     foreach ($row as $key => $val) {
-                        echo "<td>", $val, "</td>";
+                        if($key == "foto_file"){
+                            echo "<td><img src='$val' border='0' width='300' height='100'></td>";  
+        
+                        }else {
+                      echo "<td>", $val, "</td>";
+                       }
                     }
                     print "</tr>";
                 }
