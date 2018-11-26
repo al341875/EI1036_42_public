@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: my_group1
+Plugin Name: my_groupAgroshopping
 Description: Register group of persons.
-Author URI: lola
-Author Email: dllido@uji.es
+Author URI: Jordi
+Author Email: al341875@uji.es
 Version: 1.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
