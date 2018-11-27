@@ -66,9 +66,14 @@ function AS_MP_Register_Form($MP_user , $user_email)
 function hook_css() {
    ?>
        <style>
-           .wp_head_example {
+           .wp_head {
+               table{
                background-color : #f1f1f1;
                border-collapse:collapse;
+               }
+            td,th{
+                border: 1px solid black;
+            }
 
            }
        </style>
@@ -141,7 +146,7 @@ function AS_MP_my_datos()
                 //print '<div><table><th>';
                 print '<table><thead>';
                 foreach ( array_keys($rows[0])as $key) {
-                    echo "<td>", $key,"</td>";
+                    echo "<th>", $key,"</th>";
                 }
                 print "</th>";
                 foreach ($rows as $row) {
