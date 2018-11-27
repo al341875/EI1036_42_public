@@ -63,7 +63,18 @@ function AS_MP_Register_Form($MP_user , $user_email)
     </form>
 <?php
 }
+function hook_css() {
+   ?>
+       <style>
+           .wp_head_example {
+               background-color : #f1f1f1;
+               border-collapse:collapse;
 
+           }
+       </style>
+   <?php
+}
+add_action('wp_head', 'hook_css');
 //CONTROLADOR
 //Esta función realizará distintas acciones en función del valor del parámetro
 //$_REQUEST['proceso'], o sea se activara al llamar a url semejantes a 
