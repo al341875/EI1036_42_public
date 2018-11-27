@@ -76,7 +76,7 @@ function hook_css() {
                border-collapse:collapse;
                }
             td,th{
-                border: 1px solid black;
+                border: 7px solid black;
             }
 
            }
