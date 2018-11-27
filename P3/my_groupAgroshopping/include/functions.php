@@ -71,6 +71,10 @@ function hook_css() {
                background-color : #f1f1f1;
                border-collapse:collapse;
                }
+               tbody{
+                background-color : #fff7e6;
+               border-collapse:collapse;
+               }
             td,th{
                 border: 1px solid black;
             }
