@@ -148,7 +148,9 @@ function AS_MP_my_datos()
                 foreach ( array_keys($rows[0])as $key) {
                     echo "<th>", $key,"</th>";
                 }
-                print "</th>";
+                print "</thead>";
+                print "<tbody>";
+
                 foreach ($rows as $row) {
                     print "<tr>";
                     foreach ($row as $key => $val) {
@@ -161,7 +163,7 @@ function AS_MP_my_datos()
                     }
                     print "</tr>";
                 }
-                print "</table></thead>";
+                print "</table></tbody>";
             }
             else{echo "No existen valores";}
             break;
