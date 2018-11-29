@@ -98,8 +98,8 @@ function AS_MP_my_datos()
             $URL = "";
             $loc='/Lab/P1/img/';
             if(array_key_exists('foto_file', $_FILES) && $_POST['email']) {
-            $fotoURL = sanitize_text_field($IMAGENES_USUARIOS.$_POST['userName']."_".$_FILES['foto_file']['userName']);
-            $URL=sanitize_text_field($loc.$_POST['userName']."_".$_FILES['foto_file']['userName']);
+            $fotoURL = sanitize_text_field($IMAGENES_USUARIOS.$_POST['userName']."_".$_FILES['foto_file']['name']);
+            $URL=sanitize_text_field($loc.$_POST['userName']."_".$_FILES['foto_file']['name']);
             if (move_uploaded_file($_FILES['foto_file']['tmp_name'], $fotoURL))
                 { echo "foto subida con éxito";
             }}
@@ -107,8 +107,8 @@ function AS_MP_my_datos()
                 print ("No has rellenado el formulario correctamente");
                 return;
             }
-            $query = "INSERT INTO $table (nombre, email,clienteMail,foto_file) VALUES (?,?,?,?)";         
-            $a=array($_REQUEST['userName'], $_REQUEST['email'],$_REQUEST['clienteMail'] ,$URL );
+            $query = "INSERT INTO $table (nombre, email,foto_file,clienteMail,) VALUES (?,?,?,?)";         
+            $a=array($_REQUEST['userName'], $_REQUEST['email'],$URL ,$_REQUEST['clienteMail'] );
             //$pdo1 = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
             $consult = $MP_pdo->prepare($query);
             $a=$consult->execute($a);
