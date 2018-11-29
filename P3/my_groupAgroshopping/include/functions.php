@@ -29,7 +29,52 @@ function AS_MP_CrearT($table){
     $consult = $MP_pdo->prepare($query);
     $consult->execute (array());
 }
+function hook_css() {
+    ?>
+        <style>
+            .wp_head {
+                table.paleBlueRows {
+  font-family: "Times New Roman", Times, serif;
+  border: 1px solid #FFFFFF;
+  width: 350px;
+  height: 200px;
+  text-align: center;
+  border-collapse: collapse;
+}
+table.paleBlueRows td, table.paleBlueRows th {
+  border: 1px solid #FFFFFF;
+  padding: 3px 2px;
+}
+table.paleBlueRows tbody td {
+  font-size: 13px;
+}
+table.paleBlueRows tr:nth-child(even) {
+  background: #D0E4F5;
+}
+table.paleBlueRows thead {
+  background: #0B6FA4;
+  border-bottom: 5px solid #FFFFFF;
+}
+table.paleBlueRows thead th {
+  font-size: 17px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-align: center;
+  border-left: 2px solid #FFFFFF;
+}
+table.paleBlueRows thead th:first-child {
+  border-left: none;
+}
 
+table.paleBlueRows tfoot td {
+  font-size: 14px;
+}
+ 
+            }
+        </style>
+    <?php
+ }
+ add_action('wp_head', 'hook_css');
 
 
 function AS_MP_Register_Form($MP_user , $user_email)
@@ -128,7 +173,7 @@ function AS_MP_my_datos()
             $rows=$consult->fetchAll(PDO::FETCH_ASSOC);
             if (is_array($rows)) {/* Creamos un listado como una tabla HTML*/
                 //print '<div><table><th>';
-                print '<table><thead>';
+                print '<table class="paleBlueRows" ><thead>';
                 foreach ( array_keys($rows[0])as $key) {
                     echo "<th>", $key,"</th>";
                 }
