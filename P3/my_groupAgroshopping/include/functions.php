@@ -123,8 +123,7 @@ function AS_MP_my_datos()
     table.paleBlueRows {
       font-family: "Times New Roman", Times, serif;
       border: 1px solid #FFFFFF;
-      width: 350px;
-      height: 200px;
+  
       text-align: center;
       border-collapse: collapse;
     }
