@@ -24,9 +24,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 //Funcion instalación plugin. Crea tabla
 function AS_MP_CrearT($table){
     
-    $MP_pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
+    $MP_pdo_AS = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
     $query="CREATE TABLE IF NOT EXISTS $table (person_id INT(11) NOT NULL AUTO_INCREMENT, nombre VARCHAR(100),  email VARCHAR(100),  foto_file VARCHAR(25), clienteMail VARCHAR(100),  PRIMARY KEY(person_id))";
-    $consult = $MP_pdo->prepare($query);
+    $consult = $MP_pdo_AS->prepare($query);
     $consult->execute (array());
 }
 
@@ -71,7 +71,7 @@ function AS_MP_my_datos()
 { 
     global $user_ID , $user_email;
     $table='A_GrupoCliente';
-    $MP_pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
+    $MP_pdo_AS = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
     
     wp_get_current_user();
     if ('' == $user_ID) {
@@ -110,7 +110,7 @@ function AS_MP_my_datos()
             $query = "INSERT INTO $table (nombre, email,foto_file,clienteMail) VALUES (?,?,?,?)";         
             $a=array($_REQUEST['userName'], $_REQUEST['email'],$URL ,$_REQUEST['clienteMail'] );
             //$pdo1 = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
-            $consult = $MP_pdo->prepare($query);
+            $consult = $MP_pdo_AS->prepare($query);
             $a=$consult->execute($a);
             if (1>$a) {echo "InCorrecto $query";}
             else wp_redirect(admin_url( 'admin-post.php?action=my_datos&proceso=listar'));
@@ -169,7 +169,7 @@ function AS_MP_my_datos()
             } 
             
 
-            $consult = $MP_pdo->prepare($query);
+            $consult = $MP_pdo_AS->prepare($query);
             $a=$consult->execute($a);
             $rows=$consult->fetchAll(PDO::FETCH_ASSOC);
             
