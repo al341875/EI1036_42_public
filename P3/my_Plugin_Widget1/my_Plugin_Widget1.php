@@ -22,7 +22,7 @@ class my_widget1 extends WP_Widget {
 public function __construct() {
 		$widget_ops = array( 
 			'classname' => 'my_widget',
-			'description' => 'My Widget is awesome',
+			'description' => 'Basic Widget ',
 		);
 		parent::__construct( 'my_widget1', 'My Widget1', $widget_ops );
 	}	
@@ -40,7 +40,6 @@ echo $args['before_title'] . $title . $args['after_title'];
 
 // Aquí es donde debemos introducir el código que queremos que se ejecute
 
-echo 'AGROSHOPPING' ;
 echo'Calle San bartolome nº 60 NULES,Castellón';
 
 echo $args['after_widget'];
