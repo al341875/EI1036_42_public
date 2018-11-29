@@ -4,7 +4,7 @@
  * *
  * * Descripción extensa: Iremos añadiendo cosas complejas en PHP.
  * *
- * * @author  Lola <dllido@uji.es> 
+ * * @author  Jordi <al341875@uji.es> 
  * * @copyright 2018 Lola
  * * @license http://www.fsf.org/licensing/licenses/gpl.txt GPL 2 or later
  * * @version 2
@@ -94,7 +94,7 @@ function AS_MP_my_datos()
         case "registrar":
       
             $fotoURL="";
-            $IMAGENES_USUARIOS = '/mnt/data/vhosts/casite-1006648.cloudaccess.net/httpdocs/Lab/P1/img/';
+            $IMAGENES_USUARIOS='/mnt/data/vhosts/casite-1006648.cloudaccess.net/httpdocs/Lab/P1/img/';
             $URL = "";
             $loc='/Lab/P1/img/';
             if(array_key_exists('ffile', $_FILES) && $_POST['email']) {
