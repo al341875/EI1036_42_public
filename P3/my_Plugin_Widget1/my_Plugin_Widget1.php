@@ -32,15 +32,16 @@ public function __construct() {
 
 public function widget( $args, $instance ) {
 $title = apply_filters( 'widget_title', $instance['title'] );
+$dir = apply_filters( 'widget_title', $instance['dir'] );
 
 // los argumentos del antes y después del widget vienen definidos por el tema
 echo $args['before_widget'];
-if ( ! empty( $title ) )
+if ( ! empty( $dir ) )
 echo $args['before_title'] . $title . $args['after_title'];
-
+echo $dir;
 // Aquí es donde debemos introducir el código que queremos que se ejecute
 
-echo'Calle San bartolome nº 60 NULES,Castellón';
+
 
 echo $args['after_widget'];
 }
@@ -49,6 +50,7 @@ echo $args['after_widget'];
 public function form( $instance ) {
 if ( isset( $instance[ 'title' ] ) ) {
 $title = $instance[ 'title' ];
+$dir = $instance['dir'];
 }
 else {
 $title = __( 'Titulo', 'my_widget_domain' );
@@ -56,8 +58,14 @@ $title = __( 'Titulo', 'my_widget_domain' );
 // Formulario del backend
  ?>
 <p>
-<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Titulo:' ); ?></label> 
-<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'direccion:' ); ?></label> 
+<input class="widefat" id="<?php echo $this->get_field_id( 'dir' ); ?>" name="<?php echo $this->get_field_name( 'dir' ); ?>" type="text" value="<?php echo esc_attr( $dir ); ?>" />
+</p>
+<?php	
+?>
+<p>
+<label for="<?php echo $this->get_field_id( 'direccion' ); ?>"><?php _e( 'Nombre de la Tienda:' ); ?></label> 
+<input class="widefat" id="<?php echo $this->get_field_id( 'NombreTienda' ); ?>" name="<?php echo $this->get_field_name( 'NombreTienda' ); ?>" type="text" value="<?php echo esc_attr( $NombreTienda); ?>" />
 </p>
 <?php	
 }
@@ -65,7 +73,9 @@ $title = __( 'Titulo', 'my_widget_domain' );
 public function update( $new_instance, $old_instance ) {
 $instance = array();
 $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
+$instance['dir'] = ( ! empty( $new_instance['dir'] ) ) ? strip_tags( $new_instance['dir'] ) : '';
 return $instance;
+
 }
 } // La clase wp_widget termina aquí
 ?>
