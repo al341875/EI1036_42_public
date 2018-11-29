@@ -99,7 +99,7 @@ function AS_MP_my_datos()
             $loc='/Lab/P1/img/';
             if(array_key_exists('foto_file', $_FILES) && $_POST['email']) {
             $fotoURL = $IMAGENES_USUARIOS.$_POST['userName']."_".$_FILES['foto_file']['name'];
-            $URL=$loc.$_POST['userName']."_".$_FILES['foto_file']['name'];
+            $URL = $loc.$_POST['userName']."_".$_FILES['foto_file']['name'];
             if (move_uploaded_file($_FILES['foto_file']['tmp_name'], $fotoURL))
                 { echo "foto subida con éxito";
             }}
