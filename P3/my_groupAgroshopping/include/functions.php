@@ -97,10 +97,11 @@ function AS_MP_my_datos()
             $IMAGENES_USUARIOS='/mnt/data/vhosts/casite-1006648.cloudaccess.net/httpdocs/Lab/P1/img/';
             $URL = "";
             $loc='/Lab/P1/img/';
+            echo "QUE PAXA";
             if(array_key_exists('ffile', $_FILES) && $_POST['email']) {
             $fotoURL = $IMAGENES_USUARIOS.$_POST['userName']."_".$_FILES['ffile']['name'];
             $URL = $loc.$_POST['userName']."_".$_FILES['ffile']['name'];
-            if (move_uploaded_file($_FILES['ffile']['tmp_name'], $fotoURL))
+            if (move_uploaded_file($_FILES['ffile']['name'], $fotoURL))
                 { echo "foto subida con éxito";
             }}
             if (count($_REQUEST) < 3) {
