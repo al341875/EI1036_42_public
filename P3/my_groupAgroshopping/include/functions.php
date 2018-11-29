@@ -53,7 +53,7 @@ function AS_MP_Register_Form($MP_user , $user_email)
         <br/>
         <label for="foto_file">foto</label>
 		<br/>
-        <input type="file" name="foto_file" class="item_requerid"  value="<?php print $foto_file ?>" />
+        <input type="file" name="ffile" class="item_requerid"  value="<?php print $ffile ?>" />
 		<br/>
 
         <input type="submit" value="Enviar">
@@ -97,10 +97,10 @@ function AS_MP_my_datos()
             $IMAGENES_USUARIOS='/mnt/data/vhosts/casite-1006648.cloudaccess.net/httpdocs/Lab/P1/img/';
             $URL2 = '';
             $location = '/Lab/P1/img/';
-            if(array_key_exists('foto_file', $_FILES) && $_POST['email']) {
-            $fotoURL = sanitize_text_field($IMAGENES_USUARIOS.$_POST['userName']."_".$_FILES['foto_file']['name']);
-            $URL2 = sanitize_text_field($location.$_POST['userName']."_".$_FILES['foto_file']['name']);
-            if (move_uploaded_file($_FILES['foto_file']['tmp_name'], $fotoURL))
+            if(array_key_exists('ffile', $_FILES) && $_POST['email']) {
+            $fotoURL = sanitize_text_field($IMAGENES_USUARIOS.$_POST['userName']."_".$_FILES['ffile']['name']);
+            $URL2 = sanitize_text_field($location.$_POST['userName']."_".$_FILES['ffile']['name']);
+            if (move_uploaded_file($_FILES['ffile']['tmp_name'], $fotoURL))
                 { echo "foto subida con éxito";
            }}
             //$URL3='/FOTOS/des.jpg';
