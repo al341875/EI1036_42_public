@@ -92,24 +92,24 @@ function AS_MP_my_datos()
             AS_MP_Register_Form($MP_user,$user_email);
             break;
         case "registrar":
-            $url33='/mnt/data/vhosts/casite-1006648.cloudaccess.net/httpdocs/FOTOS';
-            $fotoURL="";
+            //$url33='/mnt/data/vhosts/casite-1006648.cloudaccess.net/httpdocs/FOTOS';
+            $fotoURL='';
             $IMAGENES_USUARIOS='/mnt/data/vhosts/casite-1006648.cloudaccess.net/httpdocs/Lab/P1/img/';
-            $URL = "";
-            $location='/Lab/P1/img/';
+            $URL = '';
+            $location = '/Lab/P1/img/';
             if(array_key_exists('ffile', $_FILES) && $_POST['email']) {
             $fotoURL = $IMAGENES_USUARIOS.$_POST['userName']."_".$_FILES['ffile']['name'];
             $URL = $location.$_POST['userName']."_".$_FILES['ffile']['name'];
-            if (move_uploaded_file($_FILES['ffile']['name'], $url33))
+            if (move_uploaded_file($_FILES['ffile']['tmp_name'], $fotoURL))
                 { echo "foto subida con éxito";
             }}
-            $URL3='/FOTOS/des.jpg';
+            //$URL3='/FOTOS/des.jpg';
             if (count($_REQUEST) < 3) {
                 print ("No has rellenado el formulario correctamente");
                 return;
             }
             $query = "INSERT INTO $table (nombre, email,foto_file,clienteMail) VALUES (?,?,?,?)";         
-            $a=array($_REQUEST['userName'], $_REQUEST['email'],$URL3 ,$_REQUEST['clienteMail'] );
+            $a=array($_REQUEST['userName'], $_REQUEST['email'],$URL ,$_REQUEST['clienteMail'] );
             //$pdo1 = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
             $consult = $MP_pdo_AS->prepare($query);
             $a=$consult->execute($a);
