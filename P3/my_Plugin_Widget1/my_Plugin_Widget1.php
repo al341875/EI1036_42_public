@@ -58,14 +58,14 @@ $title = __( 'Titulo', 'my_widget_domain' );
 // Formulario del backend
  ?>
 <p>
-<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'direccion:' ); ?></label> 
-<input class="widefat" id="<?php echo $this->get_field_id( 'dir' ); ?>" name="<?php echo $this->get_field_name( 'dir' ); ?>" type="text" value="<?php echo esc_attr( $dir ); ?>" />
+<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Titulo de la tienda:' ); ?></label> 
+<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'titulo' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 </p>
 <?php	
 ?>
 <p>
-<label for="<?php echo $this->get_field_id( 'direccion' ); ?>"><?php _e( 'Nombre de la Tienda:' ); ?></label> 
-<input class="widefat" id="<?php echo $this->get_field_id( 'NombreTienda' ); ?>" name="<?php echo $this->get_field_name( 'NombreTienda' ); ?>" type="text" value="<?php echo esc_attr( $NombreTienda); ?>" />
+<label for="<?php echo $this->get_field_id( 'dir' ); ?>"><?php _e( 'Direccion de la Tienda:' ); ?></label> 
+<input class="widefat" id="<?php echo $this->get_field_id( 'dir' ); ?>" name="<?php echo $this->get_field_name( 'dir' ); ?>" type="text" value="<?php echo esc_attr( $dir); ?>" />
 </p>
 <?php	
 }
