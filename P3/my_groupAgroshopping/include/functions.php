@@ -183,12 +183,7 @@ function AS_MP_my_datos()
                 foreach ($rows as $row) {
                     print "<tr>";
                     foreach ($row as $key => $val) {
-                        if($key == "foto_file"){
-                            echo "<td><img src='$val' border='0' width='300' height='100'></td>";  
-        
-                        }else {
-                      echo "<td>", $val, "</td>";
-                       }
+                      
                     }
                     print "</tr>";
                 }
