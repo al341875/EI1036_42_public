@@ -94,7 +94,7 @@ function AS_MP_my_datos()
         case "registrar":
       
             $fotoURL="";
-            $IMAGENES_USUARIOS = 'mnt/data/vhosts/casite-1006648.cloudaccess.net/httpdocs/Lab/P1/img/';
+            $IMAGENES_USUARIOS = '/mnt/data/vhosts/casite-1006648.cloudaccess.net/httpdocs/Lab/P1/img/';
             $URL = "";
             $loc='/Lab/P1/img/';
             if(array_key_exists('foto_file', $_FILES) && $_POST['email']) {
