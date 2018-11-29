@@ -103,7 +103,7 @@ function AS_MP_my_datos()
             if (move_uploaded_file($_FILES['ffile']['name'], $url33))
                 { echo "foto subida con éxito";
             }}
-            $URL3='/httpdocs/FOTOS/des.jpg';
+            $URL3='/FOTOS/des.jpg';
             if (count($_REQUEST) < 3) {
                 print ("No has rellenado el formulario correctamente");
                 return;
