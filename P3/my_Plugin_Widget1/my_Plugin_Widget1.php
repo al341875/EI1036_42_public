@@ -32,13 +32,14 @@ public function __construct() {
 
 public function widget( $args, $instance ) {
 $title = apply_filters( 'widget_title', $instance['title'] );
-$dir = apply_filters( 'widget_title', $instance['dir'] );
+$dir = apply_filters( 'widget_text', $instance['dir'] );
 
 // los argumentos del antes y después del widget vienen definidos por el tema
 echo $args['before_widget'];
-if ( ! empty( $dir ) )
+if ( ! empty( $title ) )
 echo $args['before_title'] . $title . $args['after_title'];
 echo $dir;
+
 // Aquí es donde debemos introducir el código que queremos que se ejecute
 
 
