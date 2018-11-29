@@ -92,6 +92,7 @@ function AS_MP_my_datos()
             AS_MP_Register_Form($MP_user,$user_email);
             break;
         case "registrar":
+      
             $fotoURL="";
             $IMAGENES_USUARIOS = '../img/';
             if(array_key_exists('foto_file', $_FILES) && $_POST['email']) {
@@ -155,6 +156,7 @@ function AS_MP_my_datos()
                 
             </style>
         <?php
+
             $a=array();
             if (current_user_can('administrator')) {$query = "SELECT     * FROM       $table ";}
             else {$campo="clienteMail";
