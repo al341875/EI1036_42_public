@@ -34,6 +34,7 @@ function AS_MP_Ejecutar_crearT(){
     AS_MP_CrearT("A_GrupoCliente");
 }
 
+
 //add_action('admin_post_nopriv_my_datos', 'MP_my_datos'); //no autentificados
 add_action('admin_post_my_datos', 'AS_MP_my_datos'); 
 ?>

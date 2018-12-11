@@ -5,7 +5,7 @@
  * * Descripción extensa: Iremos añadiendo cosas complejas en PHP.
  * *
  * * @author  Jordi <al341875@uji.es> 
- * * @copyright 2018 Lola
+ * * @copyright 2018 Jordi
  * * @license http://www.fsf.org/licensing/licenses/gpl.txt GPL 2 or later
  * * @version 2
  * */
@@ -34,7 +34,7 @@ function AS_MP_Register_Form($MP_user , $user_email)
 {//formulario registro amigos de $user_email
     ?>
     <h1>Gestión de Usuarios </h1>
-    <form class="fom_usuario" action="?action=my_datos&proceso=registrar" method="POST">
+    <form class="fom_usuario" action="?action=my_datos&proceso=registrar" method="POST"  enctype="multipart/form-data">
         <label for="clienteMail">Tu correo</label>
         <br/>
         <input type="text" name="clienteMail"  size="20" maxlength="25" value="<?php print $user_email?>"
@@ -53,7 +53,7 @@ function AS_MP_Register_Form($MP_user , $user_email)
         <br/>
         <label for="foto_file">foto</label>
 		<br/>
-        <input type="file" name="ffile" class="item_requerid"  value="<?php print $ffile ?>" />
+        <input type="file" name="ffile" class="item_requerid"  value="<?php print $ffile ?>" required />
 		<br/>
 
         <input type="submit" value="Enviar">
