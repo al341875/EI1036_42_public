@@ -38,7 +38,7 @@ $dir = apply_filters( 'widget_text', $instance['dir'] );
 echo $args['before_widget'];
 if ( ! empty( $title ) )
 echo $args['before_title'] . $title . $args['after_title'];
-echo $title
+echo $title;
 if ( ! empty( $dir ) )
 echo $args['before_title'] . $title . $args['after_title'];
 echo $dir;
