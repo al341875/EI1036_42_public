@@ -31,10 +31,10 @@ public function __construct() {
 // Creamos la parte pública del widget
 
 public function widget( $args, $instance ) {
-$title = apply_filters( 'widget_title', $instance['title'] );
+$title = apply_filters( 'widget_text', $instance['title'] );
 $dir = apply_filters( 'widget_text', $instance['dir'] );
 $dir2= apply_filters( 'widget_title', "Dirección" );
-$tit2= $title= apply_filters( 'widget_title', "Nombre " );
+$tit2= apply_filters( 'widget_title', "Nombre " );
 
 // los argumentos del antes y después del widget vienen definidos por el tema
 echo $args['before_widget'];
