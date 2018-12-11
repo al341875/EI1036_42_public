@@ -38,6 +38,9 @@ $dir = apply_filters( 'widget_text', $instance['dir'] );
 echo $args['before_widget'];
 if ( ! empty( $title ) )
 echo $args['before_title'] . $title . $args['after_title'];
+echo $title
+if ( ! empty( $dir ) )
+echo $args['before_title'] . $title . $args['after_title'];
 echo $dir;
 
 // Aquí es donde debemos introducir el código que queremos que se ejecute
@@ -54,13 +57,13 @@ $title = $instance[ 'title' ];
 $dir = $instance['dir'];
 }
 else {
-$title = __( 'Titulo', 'my_widget_domain' );
+$title = __( 'title', 'my_widget_domain' );
 }
 // Formulario del backend
  ?>
 <p>
 <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Titulo de la tienda:' ); ?></label> 
-<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'titulo' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 </p>
 <?php	
 ?>
