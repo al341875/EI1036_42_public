@@ -19,67 +19,65 @@ add_action( 'widgets_init', 'load_my_widget' );
 // Creamos el widget 
 class my_widget1 extends WP_Widget {
 
-public function __construct() {
-		$widget_ops = array( 
-			'classname' => 'my_widget',
-			'description' => 'Basic Widget ',
-		);
-		parent::__construct( 'my_widget1', 'My Widget1', $widget_ops );
-	}	
-
-
-// Creamos la parte pública del widget
-
-public function widget( $args, $instance ) {
-$title = apply_filters( 'widget_title', $instance['title'] );
-$dir = apply_filters( 'widget_text', $instance['dir'] );
-
-// los argumentos del antes y después del widget vienen definidos por el tema
-echo $args['before_widget'];
-if ( ! empty( $title ) )
-echo $args['before_title'] . $title . $args['after_title'];
-echo $title;
-if ( ! empty( $dir ) )
-echo $args['before_title'] . $title . $args['after_title'];
-echo $dir;
-
-// Aquí es donde debemos introducir el código que queremos que se ejecute
-
-
-
-echo $args['after_widget'];
-}
-		
-// Backend  del widget
-public function form( $instance ) {
-if ( isset( $instance[ 'title' ] ) ) {
-$title = $instance[ 'title' ];
-$dir = $instance['dir'];
-}
-else {
-$title = __( 'title', 'my_widget_domain' );
-}
-// Formulario del backend
- ?>
-<p>
-<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Titulo de la tienda:' ); ?></label> 
-<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
-</p>
-<?php	
-?>
-<p>
-<label for="<?php echo $this->get_field_id( 'dir' ); ?>"><?php _e( 'Direccion de la Tienda:' ); ?></label> 
-<input class="widefat" id="<?php echo $this->get_field_id( 'dir' ); ?>" name="<?php echo $this->get_field_name( 'dir' ); ?>" type="text" value="<?php echo esc_attr( $dir); ?>" />
-</p>
-<?php	
-}
-// Actualizamos el widget reemplazando las viejas instancias con las nuevas
-public function update( $new_instance, $old_instance ) {
-$instance = array();
-$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-$instance['dir'] = ( ! empty( $new_instance['dir'] ) ) ? strip_tags( $new_instance['dir'] ) : '';
-return $instance;
-
-}
-} // La clase wp_widget termina aquí
+	public function __construct() {
+			$widget_ops = array( 
+				'classname' => 'my_widget',
+				'description' => 'My Widget is awesome',
+			);
+			parent::__construct( 'my_widget1', 'My Widget1', $widget_ops );
+		}	
+	
+	
+	// Creamos la parte pÃºblica del widget
+	
+	public function widget( $args, $instance ) {
+	$title= apply_filters( 'widget_title', "Nombre de la tienda" );
+	$NombreTienda= apply_filters( 'widget_text', $instance['NombreTienda'] );
+	$title2= apply_filters( 'widget_title', "Dirección de la tienda" );
+	$DireccionTienda= apply_filters( 'widget_text', $instance['DireccionTienda'] );
+	
+	
+	// los argumentos del antes y despues del widget vienen definidos por el tema
+	echo $args['before_widget'];
+	if ( ! empty( $NombreTienda) )
+	echo $args['before_title'] . $title . $args['after_title'];
+	echo $NombreTienda;
+	if ( ! empty( $DireccionTienda) )
+	echo $args['before_title'] . $title2 . $args['after_title'];
+	echo $DireccionTienda;
+	// AquÃ­ es donde debemos introducir el cÃ³digo que queremos que se ejecute
+	echo $args['after_widget'];
+	}
+			
+	// Backend  del widget
+	public function form( $instance ) {
+	if ( isset( $instance[ 'NombreTienda' ] ) ) {
+	$NombreTienda= $instance[ 'NombreTienda' ];
+	$DireccionTienda= $instance['DireccionTienda'];
+	}
+	else {
+	$title = __( 'NombreTienda', 'my_widget_domain' );
+	}
+	// Formulario del backend
+	 ?>
+	<p>
+	<label for="<?php echo $this->get_field_id( 'NombreTienda' ); ?>"><?php _e( 'Nombre de la Tienda:' ); ?></label> 
+	<input class="widefat" id="<?php echo $this->get_field_id( 'NombreTienda' ); ?>" name="<?php echo $this->get_field_name( 'NombreTienda' ); ?>" type="text" value="<?php echo esc_attr( $NombreTienda); ?>" />
+	</p>
+	<p>
+	<label for="<?php echo $this->get_field_id( 'DireccionTienda' ); ?>"><?php _e( 'Direccion de la Tienda:' ); ?></label> 
+	<input class="widefat" id="<?php echo $this->get_field_id( 'DireccionTienda' ); ?>" name="<?php echo $this->get_field_name( 'DireccionTienda' ); ?>" type="text" value="<?php echo esc_attr( $DireccionTienda); ?>" />
+	</p>
+	<?php	
+	}
+	// Actualizamos el widget reemplazando las viejas instancias con las nuevas
+	public function update( $new_instance, $old_instance ) {
+	$instance = array();
+	$instance['NombreTienda'] = ( ! empty( $new_instance['NombreTienda'] ) ) ? strip_tags( $new_instance['NombreTienda'] ) : '';
+	$instance['DireccionTienda'] = ( ! empty( $new_instance['DireccionTienda'] ) ) ? strip_tags( $new_instance['DireccionTienda'] ) : '';
+	
+	return $instance;
+	}
+	} // La clase wp_widget termina aqui
+	
 ?>
