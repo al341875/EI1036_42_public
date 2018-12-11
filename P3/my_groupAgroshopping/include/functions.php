@@ -104,6 +104,10 @@ function AS_MP_my_datos()
                 { echo "foto subida con éxito";
            }}
             //$URL3='/FOTOS/des.jpg';
+            if (count($_REQUEST) < 3) {
+                print ("No has rellenado el formulario correctamente");
+                return;
+            }
             $query = "INSERT INTO $table (nombre, email,foto_file,clienteMail) VALUES (?,?,?,?)";         
             $a=array($_REQUEST['userName'], $_REQUEST['email'],$URL2 ,$_REQUEST['clienteMail'] );
             //$pdo1 = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
