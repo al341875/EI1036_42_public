@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: my_groupSportRunner
+Plugin Name: my_groupAgroshopping
 Description: Register group of persons.
-Author URI: Jordi, Juan
-Author Email: al316454@uji.es, al341847@uji.es
+Author URI: Jordi
+Author Email: al341875@uji.es
 Version: 1.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -27,25 +27,13 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 include(plugin_dir_path( __FILE__ ).'include/functions.php');
 
-register_activation_hook( __FILE__, 'MP_Ejecutar_crearTSportRunner');
+register_activation_hook( __FILE__, 'AS_MP_Ejecutar_crearT');
 
 //add_action( 'plugins_loaded', 'Ejecutar_crearT' ); // esto se ejecuta siempre que se llama al plugin
-function MP_Ejecutar_crearTSportRunner(){
-    MP_CrearTSportRunner("A_GrupoCliente");
+function AS_MP_Ejecutar_crearT(){
+    AS_MP_CrearT("A_GrupoCliente");
 }
 
-function hook_css() {
-   ?>
-       <style>
-           .wp_head_example {
-               background-color : #f1f1f1;
-           }
-       </style>
-   <?php
-}
-add_action('wp_head', 'hook_css');
-
-
-//add_action('admin_post_nopriv_my_datos', 'my_datos'); //no autentificados
-add_action('admin_post_my_datos', 'MP_my_datosSportRunner'); 
+//add_action('admin_post_nopriv_my_datos', 'MP_my_datos'); //no autentificados
+add_action('admin_post_my_datos', 'AS_MP_my_datos'); 
 ?>

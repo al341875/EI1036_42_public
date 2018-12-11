@@ -20,69 +20,41 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 
 
-<?php
-/**
- * * Descripción: Controlador principal
- * *
- * * Descripción extensa: Iremos añadiendo cosas complejas en PHP.
- * *
- * * @author  Jordi <al316454@uji.es>, Juan Bautista <al341847@uji.es> 
- * * @copyright 2018 Jordi y Juan
- * * @license http://www.fsf.org/licensing/licenses/gpl.txt GPL 2 or later
- * * @version 1
- * */
-
-
-//Estas 2 instrucciones me aseguran que el usuario accede a través del WP. Y no directamente
-if ( ! defined( 'WPINC' ) ) exit;
-
-if ( ! defined( 'ABSPATH' ) ) exit;
-
-
-
-
-
 
 //Funcion instalación plugin. Crea tabla
-function MP_CrearTSportRunner($table){
+function AS_MP_CrearT($table){
     
-    $MP_pdoSportRunner = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
-    $query="CREATE TABLE IF NOT EXISTS $table (person_id INT(11) NOT NULL AUTO_INCREMENT, nombre VARCHAR(100),  email VARCHAR(100),  foto_file VARCHAR(25), clienteMail VARCHAR(100),  PRIMARY KEY(person_id))";
-    $consult = $MP_pdoSportRunner->prepare($query);
+    $MP_pdo_AS = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
+    $query="CREATE TABLE IF NOT EXISTS $table (person_id INT(11) NOT NULL AUTO_INCREMENT, nombre VARCHAR(100),  email VARCHAR(100),  foto_file VARCHAR(100), clienteMail VARCHAR(100),  PRIMARY KEY(person_id))";
+    $consult = $MP_pdo_AS->prepare($query);
     $consult->execute (array());
 }
 
-
-
-function MP_Register_FormSportRunner($MP_userSportRunner , $user_email)
+function AS_MP_Register_Form($MP_user , $user_email)
 {//formulario registro amigos de $user_email
     ?>
-
-
-    <h1>GestiÓn de Usuarios </h1>
-    <form class="form" action="?action=my_datos&proceso=registrar" method="POST" enctype="multipart/form-data">
+    <h1>Gestión de Usuarios </h1>
+    <form class="fom_usuario" action="?action=my_datos&proceso=registrar" method="POST">
         <label for="clienteMail">Tu correo</label>
         <br/>
         <input type="text" name="clienteMail"  size="20" maxlength="25" value="<?php print $user_email?>"
         readonly />
         <br/>
         <legend>Datos básicos</legend>
-<br/>
         <label for="nombre">Nombre</label>
         <br/>
-        <input type="text" name="userName" class="item_requerid" size="20" maxlength="25" value="<?php print $MP_userSportRunner["userName"] ?>"
+        <input type="text" name="userName" class="item_requerid" size="20" maxlength="25" value="<?php print $MP_user["userName"] ?>"
         placeholder="Miguel Cervantes" />
         <br/>
         <label for="email">Email</label>
         <br/>
-        <input type="text" name="email" class="item_requerid" size="20" maxlength="25" value="<?php print $MP_userSportRunner["email"] ?>"
+        <input type="text" name="email" class="item_requerid" size="20" maxlength="25" value="<?php print $MP_user["email"] ?>"
         placeholder="kiko@ic.es" />
         <br/>
- <label for="foto_file">Foto</label>
-<br/>
-<input type="file" name="foto" class="item_requerid" value="<?php print $foto ?>" required />
-<br/>
-<br/>
+        <label for="foto_file">foto</label>
+		<br/>
+        <input type="file" name="ffile" class="item_requerid"  value="<?php print $ffile ?>" />
+		<br/>
 
         <input type="submit" value="Enviar">
         <input type="reset" value="Deshacer">
@@ -95,11 +67,11 @@ function MP_Register_FormSportRunner($MP_userSportRunner , $user_email)
 //$_REQUEST['proceso'], o sea se activara al llamar a url semejantes a 
 //https://host/wp-admin/admin-post.php?action=my_datos&proceso=r 
 
-function MP_my_datosSportRunner()
+function AS_MP_my_datos()
 { 
     global $user_ID , $user_email;
     $table='A_GrupoCliente';
-    $MP_pdoSportRunner = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
+    $MP_pdo_AS = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
     
     wp_get_current_user();
     if ('' == $user_ID) {
@@ -116,88 +88,74 @@ function MP_my_datosSportRunner()
 
     switch ($_REQUEST['proceso']) {
         case "registro":
-            $MP_userSportRunner=null; //variable a rellenar cuando usamos modificar con este formulario
-            MP_Register_FormSportRunner($MP_userSportRunner,$user_email);
+            $MP_user=null; //variable a rellenar cuando usamos modificar con este formulario
+            AS_MP_Register_Form($MP_user,$user_email);
             break;
         case "registrar":
-            if (count($_REQUEST) < 4) {
-                print ("No has rellenado el formulario correctamente");
-                return;
-            }
-                        $fotoURL="";
-			$fotoURL2="";
-			$IMAGENES_USUARIOS = '/mnt/data/vhosts/casite-1014616.cloudaccess.net/httpdocs/Lab/P1/fotos/';
-			$Base = '/Lab/P1/fotos/';
-			if(array_key_exists('foto', $_FILES) && $_POST['email']) {
-				$fotoURL = $IMAGENES_USUARIOS.$_POST['userName']."_".$_FILES['foto']['name'];
-				$fotoURL2 = $Base.$_POST['userName']."_".$_FILES['foto']['name'];
-				if (move_uploaded_file($_FILES['foto']['tmp_name'], $fotoURL)){ 
-					echo "foto subida con éxito";
-				}
-			}
-
-
-
+            //$url33='/mnt/data/vhosts/casite-1006648.cloudaccess.net/httpdocs/FOTOS';
+            $fotoURL='';
+            $IMAGENES_USUARIOS='/mnt/data/vhosts/casite-1006648.cloudaccess.net/httpdocs/Lab/P1/img/';
+            $URL2 = '';
+            $location = '/Lab/P1/img/';
+            if(array_key_exists('ffile', $_FILES) && $_POST['email']) {
+            $fotoURL = sanitize_text_field($IMAGENES_USUARIOS.$_POST['userName']."_".$_FILES['ffile']['name']);
+            $URL2 = sanitize_text_field($location.$_POST['userName']."_".$_FILES['ffile']['name']);
+            if (move_uploaded_file($_FILES['ffile']['tmp_name'], $fotoURL))
+                { echo "foto subida con éxito";
+           }}
+            //$URL3='/FOTOS/des.jpg';
             $query = "INSERT INTO $table (nombre, email,foto_file,clienteMail) VALUES (?,?,?,?)";         
-            $a=array($_REQUEST['userName'], $_REQUEST['email'],$fotoURL2,$_REQUEST['clienteMail'] );
+            $a=array($_REQUEST['userName'], $_REQUEST['email'],$URL2 ,$_REQUEST['clienteMail'] );
             //$pdo1 = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
-            $consult = $MP_pdoSportRunner->prepare($query);
+            $consult = $MP_pdo_AS->prepare($query);
             $a=$consult->execute($a);
             if (1>$a) {echo "InCorrecto $query";}
             else wp_redirect(admin_url( 'admin-post.php?action=my_datos&proceso=listar'));
             break;
         case "listar":
-?>
-            <style>
-table.tablaAmigos {
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-  border: 1px solid #AAAAAA;
-  background-color: #EEEEEE;
-  width: 100%;
-  text-align: center;
-  border-collapse: collapse;
-}
-table.tablaAmigos td, table.tablaAmigos th {
-  border: 1px solid #AAAAAA;
-  padding: 4px 2px;
-}
-table.tablaAmigos tbody td {
-  font-size: 13px;
-}
-table.tablaAmigos tr:nth-child(even) {
-  background: #FFFFFF;
-}
-table.tablaAmigos th {
-  background: #D2DEAB;
-  background: -moz-linear-gradient(top, #dde6c0 0%, #d6e1b3 66%, #D2DEAB 100%);
-  background: -webkit-linear-gradient(top, #dde6c0 0%, #d6e1b3 66%, #D2DEAB 100%);
-  background: linear-gradient(to bottom, #dde6c0 0%, #d6e1b3 66%, #D2DEAB 100%);
-  border-bottom: 1px solid #FFFFFF;
-}
-table.tablaAmigos th {
-  font-size: 17px;
-  font-weight: bold;
-  color: #5FA310;
-  text-align: center;
-  border-left: 0px solid #FFFFFF;
-}
-table.tablaAmigos th:first-child {
-  border-left: none;
-}
-
-table.tablaAmigos tfoot .links {
-  text-align: right;
-}
-table.tablaAmigos tfoot .links a{
-  display: inline-block;
-  background: #1C6EA4;
-  color: #FFFFFF;
-  padding: 2px 8px;
-  border-radius: 5px;
-}
-</style>
-<?php
             //Listado amigos o de todos si se es administrador.
+            ?>
+            <style>
+    table.paleBlueRows {
+      font-family: "Times New Roman", Times, serif;
+      border: 1px solid #FFFFFF;
+  
+      text-align: center;
+      border-collapse: collapse;
+    }
+    table.paleBlueRows td, table.paleBlueRows th {
+      border: 1px solid #FFFFFF;
+      padding: 3px 2px;
+    }
+    table.paleBlueRows tbody td {
+      font-size: 13px;
+    }
+    table.paleBlueRows tr:nth-child(even) {
+      background: #D0E4F5;
+    }
+    table.paleBlueRows thead {
+      background: #0B6FA4;
+      border-bottom: 5px solid #FFFFFF;
+    }
+    table.paleBlueRows thead th {
+      font-size: 17px;
+      font-weight: bold;
+      color: #FFFFFF;
+      text-align: center;
+      border-left: 2px solid #FFFFFF;
+    }
+    table.paleBlueRows thead th:first-child {
+      border-left: none;
+    }
+    
+    table.paleBlueRows tfoot td {
+      font-size: 14px;
+    }
+     
+                
+            </style>
+        <?php
+
             $a=array();
             if (current_user_can('administrator')) {$query = "SELECT     * FROM       $table ";}
             else {$campo="clienteMail";
@@ -205,29 +163,35 @@ table.tablaAmigos tfoot .links a{
                 $a=array( $user_email);
  
             } 
+            
 
-            $consult = $MP_pdoSportRunner->prepare($query);
+            $consult = $MP_pdo_AS->prepare($query);
             $a=$consult->execute($a);
             $rows=$consult->fetchAll(PDO::FETCH_ASSOC);
+            
             if (is_array($rows)) {/* Creamos un listado como una tabla HTML*/
-                print '<div><table class="tablaAmigos"><tr>';
+                //print '<div><table><th>';
+                print '<table class ="paleBlueRows" ><thead>';
+               
+
                 foreach ( array_keys($rows[0])as $key) {
                     echo "<th>", $key,"</th>";
                 }
-                print "</tr>";
-                 foreach ($rows as $row) {
+                print "</thead>";
+                print "<tbody>";
+
+                foreach ($rows as $row) {
                     print "<tr>";
                     foreach ($row as $key => $val) {
-                        if ($key=="foto_file"){
-							echo "<td>", "<img src='$val' width='100' height='100'>", "</td>";
-						} else {
-							echo "<td>", $val, "</td>";}
-
+                        if($key == "foto_file"){
+                            echo "<td><img src='$val' border='0' width='300' height='100'></td>";  
+                        }else {
+                      echo "<td>", $val, "</td>";
+                       }
                     }
                     print "</tr>";
                 }
-                print "</table></div>";
-
+                print "</table></tbody>";
             }
             else{echo "No existen valores";}
             break;
