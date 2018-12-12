@@ -34,7 +34,7 @@ function AS_MP_Register_Form($MP_user , $user_email)
 {//formulario registro amigos de $user_email
     ?>
     <h1>Gestión de Usuarios </h1>
-    <form class="fom_usuario" action="?action=my_datos&proceso=registrar" method="POST"  enctype="multipart/form-data">
+    <form class="fom_usuario" action="?action=my_datos&proceso=registrar_as" method="POST"  enctype="multipart/form-data">
         <label for="clienteMail">Tu correo</label>
         <br/>
         <input type="text" name="clienteMail"  size="20" maxlength="25" value="<?php print $user_email?>"
@@ -91,7 +91,7 @@ function AS_MP_my_datos()
             $MP_user=null; //variable a rellenar cuando usamos modificar con este formulario
             AS_MP_Register_Form($MP_user,$user_email);
             break;
-        case "registrar":
+        case "registrar_as":
             //$url33='/mnt/data/vhosts/casite-1006648.cloudaccess.net/httpdocs/FOTOS';
             $fotoURL='';
             $IMAGENES_USUARIOS='/mnt/data/vhosts/casite-1006648.cloudaccess.net/httpdocs/Lab/P1/img/';
@@ -114,9 +114,9 @@ function AS_MP_my_datos()
             $consult = $MP_pdo_AS->prepare($query);
             $a=$consult->execute($a);
             if (1>$a) {echo "InCorrecto $query";}
-            else wp_redirect(admin_url( 'admin-post.php?action=my_datos&proceso=listar'));
+            else wp_redirect(admin_url( 'admin-post.php?action=my_datos&proceso=listar_as'));
             break;
-        case "listar":
+        case "listar_as":
             //Listado amigos o de todos si se es administrador.
             ?>
             <style>
