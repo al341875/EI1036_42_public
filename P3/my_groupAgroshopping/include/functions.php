@@ -37,7 +37,8 @@ function AS_MP_Register_Form($MP_user , $user_email)
     <form class="fom_usuario" action="?action=AS_MP_my_datos&proceso=registrar_as" method="POST"  enctype="multipart/form-data">
         <label for="clienteMail">Tu correo</label>
         <br/>
-        <input type="text" name="clienteMail"  size="20" maxlength="25" value="<?php print $user_email?>"
+        <input type="text" name="clienteMail"  size="20" maxle
+        ngth="25" value="<?php print $user_email?>"
         readonly />
         <br/>
         <legend>Datos básicos</legend>
