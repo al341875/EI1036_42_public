@@ -87,7 +87,7 @@ function AS_MP_my_datos()
     echo '<div class="wrap">';
 
     switch ($_REQUEST['proceso']) {
-        case "registro":
+        case "registro_as":
             $MP_user=null; //variable a rellenar cuando usamos modificar con este formulario
             AS_MP_Register_Form($MP_user,$user_email);
             break;
