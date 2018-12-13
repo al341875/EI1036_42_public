@@ -16,7 +16,8 @@ if ( ! defined( 'WPINC' ) ) exit;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
+define( 'ABSPATH', dirname(dirname(__FILE__)) . '/' );
+define( 'WPINC', 'wp-includes' );
 
 
 
