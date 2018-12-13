@@ -113,7 +113,7 @@ function my_datos_AS()
             $consult = $MP_pdo_AS->prepare($query);
             $a=$consult->execute($a);
             if (1>$a) {echo "InCorrecto $query";}
-            else wp_redirect(admin_url( 'admin-post.php?action=AS_MP_my_datos&proceso=listar_as'));
+            else wp_redirect(admin_url( 'admin-post.php?action=my_datos_AS&proceso=listar_AS'));
             break;
         case "listar_AS":
             //Listado amigos o de todos si se es administrador.
