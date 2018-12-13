@@ -32,7 +32,7 @@ function AS_MP_Register_Form($MP_user , $user_email)
 {//formulario registro amigos de $user_email
     ?>
     <h1>Gestión de Usuarios </h1>
-    <form class="fom_usuario" action="?action=AS_MP_my_datos&proceso=registrar_as" method="POST"  enctype="multipart/form-data">
+    <form class="fom_usuario" action="?action=my_datos_AS&proceso=registrar_AS" method="POST"  enctype="multipart/form-data">
         <label for="clienteMail">Tu correo</label>
         <br/>
         <input type="text" name="clienteMail"  size="20" maxle
@@ -66,7 +66,7 @@ function AS_MP_Register_Form($MP_user , $user_email)
 //$_REQUEST['proceso'], o sea se activara al llamar a url semejantes a 
 //https://host/wp-admin/admin-post.php?action=my_datos&proceso=r 
 
-function AS_MP_my_datos()
+function my_datos_AS()
 { 
     global $user_ID , $user_email;
     $table='A_GrupoCliente';
@@ -86,11 +86,11 @@ function AS_MP_my_datos()
     echo '<div class="wrap">';
 
     switch ($_REQUEST['proceso']) {
-        case "registro_as":
+        case "registro_AS":
             $MP_user=null; //variable a rellenar cuando usamos modificar con este formulario
             AS_MP_Register_Form($MP_user,$user_email);
             break;
-        case "registrar_as":
+        case "registrar_AS":
             //$url33='/mnt/data/vhosts/casite-1006648.cloudaccess.net/httpdocs/FOTOS';
             $fotoURL='';
             $IMAGENES_USUARIOS='/mnt/data/vhosts/casite-1006648.cloudaccess.net/httpdocs/Lab/P1/img/';
@@ -115,7 +115,7 @@ function AS_MP_my_datos()
             if (1>$a) {echo "InCorrecto $query";}
             else wp_redirect(admin_url( 'admin-post.php?action=AS_MP_my_datos&proceso=listar_as'));
             break;
-        case "listar_as":
+        case "listar_AS":
             //Listado amigos o de todos si se es administrador.
             ?>
             <style>
