@@ -77,6 +77,8 @@ function AS_MP_Register_Form($MP_user , $user_email)
             mostrarFoto(this.files[0], imagen);
         });
         }
+        
+      ready();
         </script>
 <?php
 }
