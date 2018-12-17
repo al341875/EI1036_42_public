@@ -61,6 +61,12 @@ function AS_MP_Register_Form($MP_user , $user_email)
 <?php
 }
 
+//VALIDADOR
+function photo_validator(){
+    //array de archivos disponibles 
+    $file_type_allowed = array('jpg', 'jpeg', 'gif', 'png', 'tif', 'tiff', 'bmp'); 
+
+}
 //CONTROLADOR
 //Esta función realizará distintas acciones en función del valor del parámetro
 //$_REQUEST['proceso'], o sea se activara al llamar a url semejantes a 
@@ -162,6 +168,7 @@ function my_datos_AS()
             $a=array();
             if (current_user_can('administrator')) {$query = "SELECT     * FROM       $table ";}
             else {$campo="clienteMail";
+                print("algo pasa");
                 $query = "SELECT     * FROM  $table      WHERE $campo =?";
                 $a=array( $user_email);
  
