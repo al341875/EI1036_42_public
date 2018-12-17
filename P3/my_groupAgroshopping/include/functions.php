@@ -58,8 +58,29 @@ function AS_MP_Register_Form($MP_user , $user_email)
         <input type="submit" value="Enviar">
         <input type="reset" value="Deshacer">
     </form>
+
+    <script type="text/javascript" charset="utf-8">
+    function mostrarFoto(file, imagen) {
+        //carga la imagen de file en el elemento src imagen
+        var reader = new FileReader();
+        reader.addEventListener("load", function () {
+            imagen.src = reader.result;
+        });
+        reader.readAsDataURL(file);
+        }
+
+        function ready() {
+        var fichero = document.querySelector("#foto");
+        var imagen  = document.querySelector("#img_foto");
+        //escuchamos evento selección nuevo fichero.
+        fichero.addEventListener("change", function (event) {
+            mostrarFoto(this.files[0], imagen);
+        });
+        }
+        </script>
 <?php
 }
+
 ?>
             <style>
     table.paleBlueRows {
@@ -101,6 +122,8 @@ function AS_MP_Register_Form($MP_user , $user_email)
                 
             </style>
         <?php
+    
+  
 //VALIDADOR
 function photo_validator(){
     //array de archivos disponibles 
