@@ -52,7 +52,7 @@ function AS_MP_Register_Form($MP_user , $user_email)
         <br/>
         <label for="foto_file">foto</label>
 		<br/>
-        <input type="file" name="ffile" class="item_requerid"  value="<?php print $ffile ?>" required />
+        <input type="file" id="ffile" name="ffile" class="item_requerid"  value="<?php print $ffile ?>" required />
 		<br/>
 
         <input type="submit" value="Enviar">
