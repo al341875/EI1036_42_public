@@ -60,7 +60,47 @@ function AS_MP_Register_Form($MP_user , $user_email)
     </form>
 <?php
 }
-
+?>
+            <style>
+    table.paleBlueRows {
+      font-family: "Times New Roman", Times, serif;
+      border: 1px solid #FFFFFF;
+  
+      text-align: center;
+      border-collapse: collapse;
+    }
+    table.paleBlueRows td, table.paleBlueRows th {
+      border: 1px solid #FFFFFF;
+      padding: 3px 2px;
+    }
+    table.paleBlueRows tbody td {
+      font-size: 13px;
+    }
+    table.paleBlueRows tr:nth-child(even) {
+      background: #D0E4F5;
+    }
+    table.paleBlueRows thead {
+      background: #0B6FA4;
+      border-bottom: 5px solid #FFFFFF;
+    }
+    table.paleBlueRows thead th {
+      font-size: 17px;
+      font-weight: bold;
+      color: #FFFFFF;
+      text-align: center;
+      border-left: 2px solid #FFFFFF;
+    }
+    table.paleBlueRows thead th:first-child {
+      border-left: none;
+    }
+    
+    table.paleBlueRows tfoot td {
+      font-size: 14px;
+    }
+     
+                
+            </style>
+        <?php
 //VALIDADOR
 function photo_validator(){
     //array de archivos disponibles 
@@ -113,7 +153,7 @@ function my_datos_AS()
                 print ("No has rellenado el formulario correctamente");
                 return;
             }
-            $query = "INSERT INTO $table (nombre, email,foto_file,clienteMail) VALUES (?,?,?,?)";         
+            $query = "INSERT INTO $table (nombre, email,foto_file,$user_email) VALUES (?,?,?,?)";         
             $a=array($_REQUEST['userName'], $_REQUEST['email'],$URL2 ,$_REQUEST['clienteMail'] );
             //$pdo1 = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
             $consult = $MP_pdo_AS->prepare($query);
@@ -123,47 +163,7 @@ function my_datos_AS()
             break;
         case "listar_AS":
             //Listado amigos o de todos si se es administrador.
-            ?>
-            <style>
-    table.paleBlueRows {
-      font-family: "Times New Roman", Times, serif;
-      border: 1px solid #FFFFFF;
-  
-      text-align: center;
-      border-collapse: collapse;
-    }
-    table.paleBlueRows td, table.paleBlueRows th {
-      border: 1px solid #FFFFFF;
-      padding: 3px 2px;
-    }
-    table.paleBlueRows tbody td {
-      font-size: 13px;
-    }
-    table.paleBlueRows tr:nth-child(even) {
-      background: #D0E4F5;
-    }
-    table.paleBlueRows thead {
-      background: #0B6FA4;
-      border-bottom: 5px solid #FFFFFF;
-    }
-    table.paleBlueRows thead th {
-      font-size: 17px;
-      font-weight: bold;
-      color: #FFFFFF;
-      text-align: center;
-      border-left: 2px solid #FFFFFF;
-    }
-    table.paleBlueRows thead th:first-child {
-      border-left: none;
-    }
-    
-    table.paleBlueRows tfoot td {
-      font-size: 14px;
-    }
-     
-                
-            </style>
-        <?php
+            
 
             $a=array();
             if (current_user_can('administrator')) {$query = "SELECT     * FROM       $table ";}
