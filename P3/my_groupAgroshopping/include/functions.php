@@ -166,15 +166,14 @@ function my_datos_AS()
         <?php
 
             $a=array();
-            if (current_user_can('administrator')) {$query = "SELECT     * FROM       $table ";}
-            else {
+           
                 $query = "SELECT     * FROM       $table ";
                 /*
                 $campo="clienteMail";
                 $query = "SELECT     * FROM  $table      WHERE $campo =?";
                 $a=array( $user_email);
  */
-            } 
+            
             
 
             $consult = $MP_pdo_AS->prepare($query);
