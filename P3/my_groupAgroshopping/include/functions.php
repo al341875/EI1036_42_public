@@ -166,8 +166,7 @@ function my_datos_AS()
         <?php
 
             $a=array();
-            if (current_user_can('administrator')) {$query = "SELECT     * FROM       $table ";}
-            else {
+ 
                 $query = "SELECT     * FROM       $table ";
                 /*
                 $campo="clienteMail";
