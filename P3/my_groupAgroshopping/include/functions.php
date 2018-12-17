@@ -169,7 +169,7 @@ function my_datos_AS()
             if (current_user_can('administrator')) {$query = "SELECT     * FROM       $table ";}
             else {
                 $campo="clienteMail";
-                $query = "SELECT     * FROM  $table      WHERE $campo =?";
+                $query = "SELECT     * FROM  $table      WHERE $campo =(?)";
                 $a=array( $user_email);
  
             } 
