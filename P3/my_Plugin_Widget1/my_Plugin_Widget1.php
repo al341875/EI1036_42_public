@@ -44,7 +44,15 @@ echo $title;
 if ( ! empty( $dir ) )
 echo $args['before_title'] . $dir2 . $args['after_title'];
 echo $dir;
-
+print'<aside>
+<iframe width="400" height="215" frameborder="0"
+	scrolling="no" marginheight="0" marginwidth="0"
+	src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48905.864757584204!2d-0.10358445831708697!3d39.994673751967284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5ffe0fca9b5147%3A0x1368bf53b3a7fb3f!2sUniversidade+Jaime+I!5e0!3m2!1spt-PT!2spt!4v1544721392991;output=embed">
+</iframe>
+<p>
+	<a href="https://www.google.es/maps/place/Universidade+Jaime+I/@39.9944107,-0.1035845,13z/data=!4m5!3m4!1s0xd5ffe0fca9b5147:0x1368bf53b3a7fb3f!8m2!3d39.9945804!4d-0.0688791"style="color:#0000FF;text-align:left">See bigger map</a>
+	</p>
+	</aside>'
 // Aquí es donde debemos introducir el código que queremos que se ejecute
 
 
