@@ -54,6 +54,7 @@ function AS_MP_Register_Form($MP_user , $user_email)
 		<br/>
         <input type="file" id="ffile" name="ffile" class="item_requerid"  value="<?php print $ffile ?>" required />
 		<br/>
+        <br>
         <p> <img id="img_foto" src="" width="100" height="60"></p>
         <input type="submit" value="Enviar">
         <input type="reset" value="Deshacer">
