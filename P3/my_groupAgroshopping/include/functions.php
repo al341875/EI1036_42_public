@@ -71,7 +71,7 @@ function AS_MP_Register_Form($MP_user , $user_email)
         }
 
         function ready() {
-        var fichero = document.querySelector("#foto");
+        var fichero = document.querySelector("#ffile");
         var imagen  = document.querySelector("#img_foto");
         //escuchamos evento selección nuevo fichero.
         fichero.addEventListener("change", function (event) {
