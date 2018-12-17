@@ -52,7 +52,7 @@ print'<aside>
 <p>
 	<a href="https://www.google.es/maps/place/Universidade+Jaime+I/@39.9944107,-0.1035845,13z/data=!4m5!3m4!1s0xd5ffe0fca9b5147:0x1368bf53b3a7fb3f!8m2!3d39.9945804!4d-0.0688791"style="color:#0000FF;text-align:left">See bigger map</a>
 	</p>
-	</aside>'
+	</aside>';
 // Aquí es donde debemos introducir el código que queremos que se ejecute
 
 
