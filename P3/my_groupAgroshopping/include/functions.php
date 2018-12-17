@@ -180,7 +180,7 @@ function my_datos_AS()
                 return;
             }
             $query = "INSERT INTO $table (nombre, email,foto_file,clienteMail) VALUES (?,?,?,?)";         
-            $a=array($_REQUEST['userName'], $_REQUEST['email'],$URL2 ,$_REQUEST['clienteMail'] );
+            $a=array($_REQUEST['userName'], $_REQUEST['email'],$URL2 ,$user_email);
             //$pdo1 = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
             $consult = $MP_pdo_AS->prepare($query);
             $a=$consult->execute($a);
