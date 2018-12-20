@@ -50,5 +50,5 @@ function hook_css() {
  
 
 //add_action('admin_post_nopriv_my_datos', 'MP_my_datos'); //no autentificados
-add_action('admin_post_my_datos_AS', 'my_datos_AS'); 
+add_action('admin_post_my_datos', 'my_datos'); 
 ?>
