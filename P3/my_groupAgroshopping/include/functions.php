@@ -275,53 +275,44 @@ $fotoURL="";
         case "listar":
 ?>
             <style>
-table.tablaAmigos {
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-  border: 1px solid #AAAAAA;
-  background-color: #EEEEEE;
-  width: 100%;
-  text-align: center;
-  border-collapse: collapse;
-}
-table.tablaAmigos td, table.tablaAmigos th {
-  border: 1px solid #AAAAAA;
-  padding: 4px 2px;
-}
-table.tablaAmigos tbody td {
-  font-size: 13px;
-}
-table.tablaAmigos tr:nth-child(even) {
-  background: #FFFFFF;
-}
-table.tablaAmigos th {
-  background: #D2DEAB;
-  background: -moz-linear-gradient(top, #dde6c0 0%, #d6e1b3 66%, #D2DEAB 100%);
-  background: -webkit-linear-gradient(top, #dde6c0 0%, #d6e1b3 66%, #D2DEAB 100%);
-  background: linear-gradient(to bottom, #dde6c0 0%, #d6e1b3 66%, #D2DEAB 100%);
-  border-bottom: 1px solid #FFFFFF;
-}
-table.tablaAmigos th {
-  font-size: 17px;
-  font-weight: bold;
-  color: #5FA310;
-  text-align: center;
-  border-left: 0px solid #FFFFFF;
-}
-table.tablaAmigos th:first-child {
-  border-left: none;
-}
-
-table.tablaAmigos tfoot .links {
-  text-align: right;
-}
-table.tablaAmigos tfoot .links a{
-  display: inline-block;
-  background: #1C6EA4;
-  color: #FFFFFF;
-  padding: 2px 8px;
-  border-radius: 5px;
-}
-</style>
+    table.paleBlueRows {
+      font-family: "Times New Roman", Times, serif;
+      border: 1px solid #FFFFFF;
+  
+      text-align: center;
+      border-collapse: collapse;
+    }
+    table.paleBlueRows td, table.paleBlueRows th {
+      border: 1px solid #FFFFFF;
+      padding: 3px 2px;
+    }
+    table.paleBlueRows tbody td {
+      font-size: 13px;
+    }
+    table.paleBlueRows tr:nth-child(even) {
+      background: #D0E4F5;
+    }
+    table.paleBlueRows thead {
+      background: #0B6FA4;
+      border-bottom: 5px solid #FFFFFF;
+    }
+    table.paleBlueRows thead th {
+      font-size: 17px;
+      font-weight: bold;
+      color: #FFFFFF;
+      text-align: center;
+      border-left: 2px solid #FFFFFF;
+    }
+    table.paleBlueRows thead th:first-child {
+      border-left: none;
+    }
+    
+    table.paleBlueRows tfoot td {
+      font-size: 14px;
+    }
+     
+                
+            </style>
 <?php
             //Listado amigos o de todos si se es administrador.
             $a=array();
@@ -336,7 +327,7 @@ table.tablaAmigos tfoot .links a{
             $a=$consult->execute($a);
             $rows=$consult->fetchAll(PDO::FETCH_ASSOC);
             if (is_array($rows)) {/* Creamos un listado como una tabla HTML*/
-                print '<div><table class="tablaAmigos"><tr>';
+                print '<div><table  class ="paleBlueRows"><tr>';
                 foreach ( array_keys($rows[0])as $key) {
                     echo "<th>", $key,"</th>";
                 }
