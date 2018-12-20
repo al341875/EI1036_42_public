@@ -1,14 +1,15 @@
 <?php
-/**
- * * Descripción: Controlador principal
- * *
- * * Descripción extensa: Iremos añadiendo cosas complejas en PHP.
- * *
- * * @author  Jordi <al316454@uji.es>, Juan Bautista <al341847@uji.es> 
- * * @copyright 2018 Jordi y Juan
- * * @license http://www.fsf.org/licensing/licenses/gpl.txt GPL 2 or later
- * * @version 1
- * */
+/*
+Plugin Name: my_groupAgroshopping
+Description: Register group of persons.
+Author URI: Jordi
+Author Email: al341875@uji.es
+Version: 1.0
+License: GPLv3
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
+*/
+
+
 
 
 //Estas 2 instrucciones me aseguran que el usuario accede a través del WP. Y no directamente
