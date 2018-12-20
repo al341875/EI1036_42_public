@@ -32,7 +32,7 @@ function MP_CrearAS($table){
 
 
 
-function MP_Register_FormSportRunner($MP_userSportRunner , $user_email)
+function MP_Register_FormAS($MP_userAS , $user_email)
 {//formulario registro amigos de $user_email
     ?>
 
@@ -48,12 +48,12 @@ function MP_Register_FormSportRunner($MP_userSportRunner , $user_email)
 <br/>
         <label for="nombre">Nombre</label>
         <br/>
-        <input type="text" name="userName" class="item_requerid" size="20" maxlength="25" value="<?php print $MP_userSportRunner["userName"] ?>"
+        <input type="text" name="userName" class="item_requerid" size="20" maxlength="25" value="<?php print $MP_userAS["userName"] ?>"
         placeholder="Miguel Cervantes" />
         <br/>
         <label for="email">Email</label>
         <br/>
-        <input type="text" name="email" class="item_requerid" size="20" maxlength="25" value="<?php print $MP_userSportRunner["email"] ?>"
+        <input type="text" name="email" class="item_requerid" size="20" maxlength="25" value="<?php print $MP_userAS["email"] ?>"
         placeholder="kiko@ic.es" />
         <br/>
  <label for="foto_file">Foto</label>
@@ -94,7 +94,7 @@ function MP_Register_FormSportRunner($MP_userSportRunner , $user_email)
 <?php
 }
 
-function MP_Update_Form_AS($MP_userSportRunner , $user_email,$nom,$email,$foto,$person_id)
+function MP_Update_Form_AS($MP_userAS , $user_email,$nom,$email,$foto,$person_id)
 {//formulario registro amigos de $user_email
 
     ?>
@@ -207,8 +207,8 @@ function MP_my_datosAS()
 
     switch ($_REQUEST['proceso']) {
         case "registro":
-            $MP_userSportRunner=null; //variable a rellenar cuando usamos modificar con este formulario
-            MP_Register_FormSportRunner($MP_userSportRunner,$user_email);
+            $MP_userAS=null; //variable a rellenar cuando usamos modificar con este formulario
+            MP_Register_FormAS($MP_userAS,$user_email);
             break;
         case "registrar":
             if (count($_REQUEST) < 4) {
@@ -246,11 +246,11 @@ $table2='A_GrupoCliente';
 				//if (1>$a)echo "InCorrecto2";
 				$result=($consult->fetch(PDO::FETCH_ASSOC));
 			//var_dump($result);
-			$MP_userSportRunner=null; //variable a rellenar cuando usamos modificar con este formulario
+			$MP_userAS=null; //variable a rellenar cuando usamos modificar con este formulario
 			$nom= $result["nombre"];
 			$email= $result["email"];
 			$foto= $result["foto_file"];
-			MP_pdo_AS($MP_userSportRunner,$user_email,$nom,$email,$foto,$valor);
+			MP_pdo_AS($MP_userAS,$user_email,$nom,$email,$foto,$valor);
 			break;
 case "updatear":
 $fotoURL="";
