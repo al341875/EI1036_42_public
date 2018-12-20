@@ -38,7 +38,7 @@ function MP_Register_FormSportRunner($MP_userSportRunner , $user_email)
 
 
     <h1>GestiÓn de Usuarios </h1>
-    <form class="form" action="?action=my_datos_AS&proceso=registrar" method="POST" enctype="multipart/form-data">
+    <form class="form" action="?action=my_datos&proceso=registrar" method="POST" enctype="multipart/form-data">
         <label for="clienteMail">Tu correo</label>
         <br/>
         <input type="text" name="clienteMail"  size="20" maxlength="25" value="<?php print $user_email?>"
@@ -101,7 +101,7 @@ function MP_Update_Form_AS($MP_userSportRunner , $user_email,$nom,$email,$foto,$
 
 
     <h1>GestiÓn de Usuarios </h1>
-    <form class="form" action="?action=my_datos_AS&proceso=updatear" method="POST" enctype="multipart/form-data">
+    <form class="form" action="?action=my_datos&proceso=updatear" method="POST" enctype="multipart/form-data">
         <label for="clienteMail">Tu correo</label>
         <br/>
         <input type="text" name="clienteMail"  size="20" maxlength="25" value="<?php print $user_email?>"
@@ -235,7 +235,7 @@ function MP_my_datosAS()
             $consult = $MP_pdo_AS->prepare($query);
             $a=$consult->execute($a);
             if (1>$a) {echo "InCorrecto $query";}
-            else wp_redirect(admin_url( 'admin-post.php?action=my_datos_AS&proceso=listar'));
+            else wp_redirect(admin_url( 'admin-post.php?action=my_datos&proceso=listar'));
             break;
 case "update":
 $table2='A_GrupoCliente';
@@ -270,7 +270,7 @@ $fotoURL="";
 				//$pdo1 = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
 				$consult = $MP_pdo_AS->prepare($query);
 				$a=$consult->execute($a);
-				wp_redirect(admin_url( 'admin-post.php?action=my_datos_AS&proceso=listar'));
+				wp_redirect(admin_url( 'admin-post.php?action=my_datos&proceso=listar'));
 			break;
         case "listar":
 ?>
@@ -343,7 +343,7 @@ echo "<th>","Opciones","</th>";
 
                     }
 		    $id=$row["person_id"];
-echo "<td> <a target='_blank' href='admin-post.php?action=my_datos_AS&proceso=update&person_id=$id'>Update</a> </td>";
+echo "<td> <a target='_blank' href='admin-post.php?action=my_datos&proceso=update&person_id=$id'>Update</a> </td>";
                     print "</tr>";
                 }
                 print "</table></div>";
