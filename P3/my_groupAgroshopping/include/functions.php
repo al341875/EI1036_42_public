@@ -217,7 +217,7 @@ function MP_my_datosAS()
             }
                         $fotoURL="";
 			$fotoURL2="";
-            $IMAGENES_USUARIOS ='/mnt/data/vhosts/casite-1027588.cloudaccess.net/httpdocs/Lab/P1/img/';
+            $IMAGENES_USUARIOS ='/mnt/data/vhosts/casite-1027620.cloudaccess.net/httpdocs/Lab/P1/img/';
 			$Base = '/Lab/P1/fotos/';
 			if(array_key_exists('foto', $_FILES) && $_POST['email']) {
 				$fotoURL = $IMAGENES_USUARIOS.$_POST['userName']."_".$_FILES['foto']['name'];
@@ -255,7 +255,7 @@ $table2='A_GrupoCliente';
 case "updatear":
 $fotoURL="";
 				$fotoURL2="";
-				$IMAGENES_USUARIOS ='/mnt/data/vhosts/casite-1027588.cloudaccess.net/httpdocs/Lab/P1/img/';
+				$IMAGENES_USUARIOS ='/mnt/data/vhosts/casite-1027620.cloudaccess.net/httpdocs/Lab/P1/img/';
 				$Base = '/Lab/P1/fotos/';
 				if(array_key_exists('foto', $_FILES) && $_POST['email']) {
 					$fotoURL = $IMAGENES_USUARIOS.$_POST['userName']."_".$_FILES['foto']['name'];
