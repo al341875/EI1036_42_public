@@ -31,7 +31,7 @@ register_activation_hook( __FILE__, 'AS_MP_Ejecutar_crearT');
 
 //add_action( 'plugins_loaded', 'Ejecutar_crearT' ); // esto se ejecuta siempre que se llama al plugin
 function AS_MP_Ejecutar_crearT(){
-    AS_MP_CrearT("A_GrupoCliente");
+    MP_CrearAS("A_GrupoCliente");
 }
 function hook_css() {
     ?>
