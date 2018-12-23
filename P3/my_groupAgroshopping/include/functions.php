@@ -250,7 +250,8 @@ $table2='A_GrupoCliente';
 			$MP_userAS=null; //variable a rellenar cuando usamos modificar con este formulario
 			$nom= $result["nombre"];
 			$email= $result["email"];
-			$foto= $result["foto_file"];
+            $foto= $result["foto_file"];
+            
 			MP_pdo_AS($MP_userAS,$user_email,$nom,$email,$foto,$valor);
 			break;
 case "updatear":
@@ -315,6 +316,8 @@ $fotoURL="";
                 
             </style>
 <?php
+
+           
             //Listado amigos o de todos si se es administrador.
             $a=array();
             if (current_user_can('administrator')) {$query = "SELECT     * FROM       $table ";}
@@ -323,10 +326,12 @@ $fotoURL="";
                 $a=array( $user_email);
  
             } 
+             
 
             $consult = $MP_pdo_AS->prepare($query);
             $a=$consult->execute($a);
             $rows=$consult->fetchAll(PDO::FETCH_ASSOC);
+
             if (is_array($rows)) {/* Creamos un listado como una tabla HTML*/
                 print '<div><table  class ="paleBlueRows"><tr>';
                 foreach ( array_keys($rows[0])as $key) {
@@ -357,6 +362,13 @@ echo "<td> <a target='_blank' href='admin-post.php?action=my_datos&proceso=updat
         
     }
     echo "</div>";
+          
+
+    
+      //JSON return listar jSon encode
+      //return json_encode($rows)
+      //JSON FIN
+   // echo "</div>";
     // get_footer ademas del pie de página carga el toolbar de administración de wordpres si es un 
     //usuario autentificado, por ello voy a borrar la acción cuando no es un administrador para que no aparezca.
     if (!current_user_can('administrator')) {
