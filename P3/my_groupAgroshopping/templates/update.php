@@ -1,5 +1,6 @@
 
 <?php
+include("./include/functions.php");
 function MP_Update_Form_AS($MP_userAS , $user_email,$nom,$email,$foto,$person_id)
 {//formulario registro amigos de $user_email
 
@@ -87,6 +88,7 @@ function ready() {
 <?php
 }
 $table2='A_GrupoCliente';
+
 			$valor=$_GET["person_id"];
 			$query = "SELECT     * FROM       $table WHERE person_id=$valor "; 
 			$consult = $MP_pdo_AS->prepare($query);
