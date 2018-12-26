@@ -209,7 +209,7 @@ function MP_my_datosAS()
     switch ($_REQUEST['proceso']) {
         case "registro":
             include_once(plugin_dir_path(__FILE__) . '../templates/registro.php');
-            $MP_userAS=null; //variable a rellenar cuando usamos modificar con este formulario
+           
             //MP_Register_FormAS($MP_userAS,$user_email);
             break;
         case "registrar":
