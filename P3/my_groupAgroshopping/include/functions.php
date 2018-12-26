@@ -175,72 +175,72 @@ function MP_my_datosAS()
             if (1>$a) {echo "InCorrecto $query";}
             else wp_redirect(admin_url( 'admin-post.php?action=my_datos&proceso=listar'));
             break;
-case "update":
-include_once(plugin_dir_path(__FILE__) . '../templates/update.php');
+        case "update":
+            include_once(plugin_dir_path(__FILE__) . '../templates/update.php');
 
-			break;
-case "updatear":
-$fotoURL="";
-				$fotoURL2="";
-				$IMAGENES_USUARIOS ='/mnt/data/vhosts/casite-1027620.cloudaccess.net/httpdocs/Lab/P1/img/';
-				$Base = '/Lab/P1/img/';
-				if(array_key_exists('foto', $_FILES) && $_POST['email']) {
-					$fotoURL = $IMAGENES_USUARIOS.$_POST['userName']."_".$_FILES['foto']['name'];
-					$fotoURL2 = $Base.$_POST['userName']."_".$_FILES['foto']['name'];
-					if (move_uploaded_file($_FILES['foto']['tmp_name'], $fotoURL)){ 
-						//echo "foto subida con éxito";
-					}
-				}
-			$table2='A_GrupoCliente';
-			$query = "UPDATE $table2 SET nombre=?, email=?, foto_file=? WHERE person_id=?";       
-				$a=array($_REQUEST['userName'], $_REQUEST['email'],$fotoURL2,$_REQUEST['person_id'] );
-				//$pdo1 = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
-				$consult = $MP_pdo_AS->prepare($query);
-				$a=$consult->execute($a);
-				wp_redirect(admin_url( 'admin-post.php?action=my_datos&proceso=listar'));
-			break;
-        case "listar":
-?>
-            <style>
-    table.paleBlueRows {
-      font-family: "Times New Roman", Times, serif;
-      border: 1px solid #FFFFFF;
-  
-      text-align: center;
-      border-collapse: collapse;
-    }
-    table.paleBlueRows td, table.paleBlueRows th {
-      border: 1px solid #FFFFFF;
-      padding: 3px 2px;
-    }
-    table.paleBlueRows tbody td {
-      font-size: 13px;
-    }
-    table.paleBlueRows tr:nth-child(even) {
-      background: #D0E4F5;
-    }
-    table.paleBlueRows thead {
-      background: #0B6FA4;
-      border-bottom: 5px solid #FFFFFF;
-    }
-    table.paleBlueRows thead th {
-      font-size: 17px;
-      font-weight: bold;
-      color: #FFFFFF;
-      text-align: center;
-      border-left: 2px solid #FFFFFF;
-    }
-    table.paleBlueRows thead th:first-child {
-      border-left: none;
-    }
-    
-    table.paleBlueRows tfoot td {
-      font-size: 14px;
-    }
-     
-                
-            </style>
-<?php
+                    break;
+        case "updatear":
+        $fotoURL="";
+                        $fotoURL2="";
+                        $IMAGENES_USUARIOS ='/mnt/data/vhosts/casite-1027620.cloudaccess.net/httpdocs/Lab/P1/img/';
+                        $Base = '/Lab/P1/img/';
+                        if(array_key_exists('foto', $_FILES) && $_POST['email']) {
+                            $fotoURL = $IMAGENES_USUARIOS.$_POST['userName']."_".$_FILES['foto']['name'];
+                            $fotoURL2 = $Base.$_POST['userName']."_".$_FILES['foto']['name'];
+                            if (move_uploaded_file($_FILES['foto']['tmp_name'], $fotoURL)){ 
+                                //echo "foto subida con éxito";
+                            }
+                        }
+                    $table2='A_GrupoCliente';
+                    $query = "UPDATE $table2 SET nombre=?, email=?, foto_file=? WHERE person_id=?";       
+                        $a=array($_REQUEST['userName'], $_REQUEST['email'],$fotoURL2,$_REQUEST['person_id'] );
+                        //$pdo1 = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD); 
+                        $consult = $MP_pdo_AS->prepare($query);
+                        $a=$consult->execute($a);
+                        wp_redirect(admin_url( 'admin-post.php?action=my_datos&proceso=listar'));
+                    break;
+                case "listar":
+        ?>
+                    <style>
+            table.paleBlueRows {
+            font-family: "Times New Roman", Times, serif;
+            border: 1px solid #FFFFFF;
+        
+            text-align: center;
+            border-collapse: collapse;
+            }
+            table.paleBlueRows td, table.paleBlueRows th {
+            border: 1px solid #FFFFFF;
+            padding: 3px 2px;
+            }
+            table.paleBlueRows tbody td {
+            font-size: 13px;
+            }
+            table.paleBlueRows tr:nth-child(even) {
+            background: #D0E4F5;
+            }
+            table.paleBlueRows thead {
+            background: #0B6FA4;
+            border-bottom: 5px solid #FFFFFF;
+            }
+            table.paleBlueRows thead th {
+            font-size: 17px;
+            font-weight: bold;
+            color: #FFFFFF;
+            text-align: center;
+            border-left: 2px solid #FFFFFF;
+            }
+            table.paleBlueRows thead th:first-child {
+            border-left: none;
+            }
+            
+            table.paleBlueRows tfoot td {
+            font-size: 14px;
+            }
+            
+                        
+                    </style>
+            <?php
 
            
             //Listado amigos o de todos si se es administrador.
@@ -262,22 +262,22 @@ $fotoURL="";
                 foreach ( array_keys($rows[0])as $key) {
                     echo "<th>", $key,"</th>";
                 }
-echo "<th>","Opciones","</th>";
-                print "</tr>";
-                 foreach ($rows as $row) {
-                    print "<tr>";
-                    foreach ($row as $key => $val) {
-                        if ($key=="foto_file"){
-							echo "<td>", "<img src='$val' width='100' height='100'>", "</td>";
-						} else {
-							echo "<td>", $val, "</td>";}
+                echo "<th>","Opciones","</th>";
+                                print "</tr>";
+                                foreach ($rows as $row) {
+                                    print "<tr>";
+                                    foreach ($row as $key => $val) {
+                                        if ($key=="foto_file"){
+                                            echo "<td>", "<img src='$val' width='100' height='100'>", "</td>";
+                                        } else {
+                                            echo "<td>", $val, "</td>";}
 
-                    }
-		    $id=$row["person_id"];
-echo "<td> <a target='_blank' href='admin-post.php?action=my_datos&proceso=update&person_id=$id'>Update</a> </td>";
-                    print "</tr>";
-                }
-                print "</table></div>";
+                                    }
+                                    $id=$row["person_id"];
+                                    echo "<td> <a target='_blank' href='admin-post.php?action=my_datos&proceso=update&person_id=$id'>Update</a> </td>";
+                                    print "</tr>";
+                                }
+                                print "</table></div>";
 
             }
             else{echo "No existen valores";}
