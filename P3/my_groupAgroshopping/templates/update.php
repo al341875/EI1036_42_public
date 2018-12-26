@@ -99,6 +99,6 @@ $table2='A_GrupoCliente';
 			$email= $result["email"];
             $foto= $result["foto_file"];
             
-         MP_pdo_AS($MP_userAS,$user_email,$nom,$email,$foto,$valor);
+            MP_Update_Form_AS($MP_userAS,$user_email,$nom,$email,$foto,$valor);
          
 ?>
