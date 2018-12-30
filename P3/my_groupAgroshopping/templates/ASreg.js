@@ -1,7 +1,7 @@
 async function enviaForm(evento) {
    try {
       evento.preventDefault();
-      var imagen  = document.querySelector("#img_foto");
+      var img  = document.querySelector("#img_foto");
       let url = evento.target.getAttribute("action")
       let data = new FormData(evento.target);
       let init = {
@@ -10,7 +10,6 @@ async function enviaForm(evento) {
          body: data
       };
       let request0 = new Request(url, init);
-
       const response = await fetch(request0);
 
       if (!response.ok) {
@@ -18,12 +17,12 @@ async function enviaForm(evento) {
       }   
       const result = await response.text();
       console.log('Correcto devuelvo:', result);
-evento.target.reset ();
-            imagen.src = "";
+      evento.target.reset ();
+       img.src = "";
 
 
 
-window.alert("Usuario añadido con éxito. ¿Seguir añadiendo amigos?");
+window.alert("Amigo añadido correctamente. ¿Quieres  añadir otro amigo?");
    } catch (error) {
       console.log(error);
    }
