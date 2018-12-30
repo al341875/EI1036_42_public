@@ -3,8 +3,9 @@
 function MP_Register_FormAS($MP_userAS , $user_email){
     ?>
 
-
-    <h1>GestiÓn de Usuarios </h1>
+   <head><script type="text/javascript" src="/wp-content/plugins/my_groupAgroshopping/templates/ASreg.js" charset="utf-8" async="" defer=""></script> 
+   </head>
+    <h1>Gestión de Usuarios </h1>
     <form class="form" action="?action=my_datos&proceso=registrar" method="POST" enctype="multipart/form-data">
         <label for="clienteMail">Tu correo</label>
         <br/>
